@@ -189,7 +189,6 @@ body,
 	height: 100%;
 	-webkit-background-size: auto 100%;
 	background-size: contain;
-
 	background-color: rgba(0,0,0,0.2);
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -245,7 +244,14 @@ body,
 	-webkit-background-size: cover;
 	height: 100%;
 }
-
+.horizontal-carousel-wrapper{
+	height: 100%;
+	overflow: hidden;
+}
+.horizontal-carousel-liner{
+	height: 100%;
+	width: 1554px;
+}
 
 
 /**

@@ -3,7 +3,7 @@
  */
 (function(document){
 
-MBP = MBP || {}; 
+window.MBP = window.MBP || {}; 
 
 // Fix for iPhone viewport scale bug 
 // http://www.blog.highub.com/mobile-2/a-fix-for-iphone-viewport-scale-bug/
@@ -150,58 +150,94 @@ nick.touchBehaviours = function(){
 	nick.scroll.init();
 };
 
-
-
-
-
 nick.scroll = {
+	sections: null,
+	horizontal_scroll : null,
+	section_flip : null,
+	prev_section : 0,
 	settings : {
 		timer: null,
 		$header : $('header'),
-		winHeight : $(window).height()
+		winHeight : $(window).height(),
+		prev_x : 0,
+		prev_y : 0,
+	},
+	setScrollerWidth : function($children){
+		var slugWidth = 0,
+			slugItemWidth,
+			$slugItem;
+		for(var i = 0; i < $children.length; i++) {
+			$slugItem = $children.eq(i);
+			slugItemWidth =  parseInt($slugItem.outerWidth(true));
+			slugWidth += slugItemWidth;
+		}
+		return slugWidth;
+	},
+	updateHorizontalScroller : function () {
+
+		console.log('called');
+
+		if(this.horizontal_scroll == null){
+				
+			this.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
+				hScrollbar: false,
+				vScrollbar: false,
+				snap:true
+			});
+		}
+		if(this.section_flip != null){
+			this.settings.prev_x = this.horizontal_scroll.x;
+			this.settings.prev_y = this.horizontal_scroll.y;
+			
+			if (this.section_flip.currPageY != this.settings.prev_section) {
+
+				this.horizontal_scroll = this.horizontal_scroll.destroy();
+				var oldItem = this.sections[this.prev_section].children[0];
+				var newItem = this.sections[this.section_flip.currPageY].children[0];
+				//oldItem.style.webkitTransitionDuration = '0';
+				//oldItem.style.webkitTransform = 'translate3d(' + nick.scroll.settings.prev_x + 'px, ' + nick.scroll.settings.prev_y + 'px, 0)';
+	
+				this.horizontal_scroll = new iScroll( this.sections[this.section_flip.currPageY], {
+					hScrollbar: false,
+					vScrollbar: false,
+					snap:true
+				});
+				//$(nick.scroll.settings.horizontal_scroll.scroller).css("-webkit-transform",'100 100').css('border', '1px solid blue').css('-webkit-transform-origin','100 100');
+				this.prev_section = this.section_flip.currPageY;
+			}
+		}
+		
 	},
 	init : function(){
-		
-		nick.scroll.settings.sections = document.querySelectorAll('.horizontal-carousel-wrapper');
 
-		nick.scroll.settings.section_flip = new iScroll('container', {
+		this.sections = document.querySelectorAll('.horizontal-carousel-wrapper');
+		$(this.sections).each(function(){
+			$(this).children().eq(0).width(nick.scroll.setScrollerWidth($(this).children().eq(0).children()))
+		});
+
+
+
+		this.section_flip = new iScroll('container', {
 			hScrollbar: false,
-			vScrollbar: false,
+			vScrollbar: true,
 			snap: 'section',
 			momentum: false,
-			onScrollEnd: nick.scroll.updateHorizontalScroller
+			onScrollEnd: this.updateHorizontalScroller.apply(this)
 		});
-
-		nick.scroll.settings.horizontal_scroll = new iScroll(nick.scroll.settings.sections[nick.scroll.settings.section_flip.currPageY], {
+		
+		this.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
 			hScrollbar: false,
-			vScrollbar: false
+			vScrollbar: false,
+			snap:true
 		});
 		
-		nick.scroll.setupHeader();
+		this.setupHeader();
 		
 
 		
 	},
-	
-	updateHorizontalScroller : function () {
-		prev_x = nick.scroll.settings.horizontal_scroll.x;
-		prev_y = nick.scroll.settings.horizontal_scroll.y;
-		prev_section  = nick.scroll.settings.prev_section;
-		
-		if (nick.scroll.settings.section_flip.currPageY != nick.scroll.settings.prev_section) {
-			console.log('got here');
-			nick.scroll.settings.horizontal_scroll = nick.scroll.settings.horizontal_scroll.destroy();
-	
-			nick.scroll.settings.sections[prev_section].children[0].style.webkitTransitionDuration = '0';
-			nick.scroll.settings.sections[prev_section].children[0].style.webkitTransform = 'translate3d(' + prev_x + 'px, ' + prev_y + 'px, 0)';
-	
-			nick.scroll.settings.horizontal_scroll = new iScroll(nick.scroll.settings.sections[nick.scroll.settings.section_flip.currPageY], {
-				hScrollbar: false,
-				vScrollbar: false
-			});
-			nick.scroll.settings.prev_page = nick.scroll.settings.section_flip.currPageY;
-		}
-	},
+
+
 	
 	setupHeader : function(){
 		if(nick.scroll.settings.$header.height() < nick.scroll.settings.winHeight){
@@ -247,4 +283,4 @@ nick.scroll = {
 		
 */
 	}
-}
+};

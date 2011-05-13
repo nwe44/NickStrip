@@ -5,7 +5,12 @@ nick.desktopBehaviours = function(){
 
 
 nick.headerScroll = {
+	settings : {
+		one: 1,
+		two: 'other'
+	},
 	init : function($header, headerHeight){
+		console.log(this);
 		var winHeight = $(window).height()
 		var inPort = $(window).scrollTop() < winHeight - headerHeight;
 		if($header.height() > headerHeight || $(window).scrollTop() < winHeight -200){
