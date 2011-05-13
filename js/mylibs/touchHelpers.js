@@ -216,22 +216,14 @@ nick.scroll = {
 		});
 
 
-<<<<<<< HEAD
-		
-		this.section_flip = new iScroll('container', {
-=======
 
-		nick.scroll.section_flip = new iScroll('container', {
->>>>>>> b159d70779c5875c10d9fd3997f8bd006ec0ca5e
+		this.section_flip = new iScroll('container', {
+
 			hScrollbar: false,
 			vScrollbar: true,
 			snap: 'section',
 			momentum: false,
-<<<<<<< HEAD
 			onScrollEnd: function(){nick.scroll.updateHorizontalScroller.apply(nick.scroll)}
-=======
-			onScrollEnd: nick.scroll.updateHorizontalScroller.apply(nick.scroll)
->>>>>>> b159d70779c5875c10d9fd3997f8bd006ec0ca5e
 		});
 		
 		nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
