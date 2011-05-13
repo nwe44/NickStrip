@@ -216,13 +216,13 @@ nick.scroll = {
 		});
 
 
-
+		
 		this.section_flip = new iScroll('container', {
 			hScrollbar: false,
 			vScrollbar: true,
 			snap: 'section',
 			momentum: false,
-			onScrollEnd: this.updateHorizontalScroller.apply(this)
+			onScrollEnd: function(){nick.scroll.updateHorizontalScroller.apply(nick.scroll)}
 		});
 		
 		this.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
