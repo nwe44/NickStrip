@@ -178,8 +178,8 @@ nick.scroll = {
 		console.log('called');
 
 		if(this.horizontal_scroll == null){
-				
-			this.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
+			console.log('was null');
+			nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
 				hScrollbar: false,
 				vScrollbar: false,
 				snap:true
@@ -217,15 +217,15 @@ nick.scroll = {
 
 
 
-		this.section_flip = new iScroll('container', {
+		nick.scroll.section_flip = new iScroll('container', {
 			hScrollbar: false,
 			vScrollbar: true,
 			snap: 'section',
 			momentum: false,
-			onScrollEnd: this.updateHorizontalScroller.apply(this)
+			onScrollEnd: nick.scroll.updateHorizontalScroller.apply(nick.scroll)
 		});
 		
-		this.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
+		nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
 			hScrollbar: false,
 			vScrollbar: false,
 			snap:true
