@@ -10,7 +10,6 @@ nick.headerScroll = {
 		two: 'other'
 	},
 	init : function($header, headerHeight){
-		console.log(this);
 		var winHeight = $(window).height()
 		var inPort = $(window).scrollTop() < winHeight - headerHeight;
 		if($header.height() > headerHeight || $(window).scrollTop() < winHeight -200){
@@ -23,16 +22,5 @@ nick.headerScroll = {
 			$('.head .slideshow').groupedCrossFader('pauseAuto').fadeOut();
 			$('.head').addClass('head-top');
 		}
-	},
-	inViewport : function($object){
-		var bottom = $(window).height() + $(window).scrollTop(),
-			top = $(window).scrollTop();
-		if( bottom <= $object.offset().top && top >= $object.offset().top + $object.height()){
-			return false;
-		}else{
-			return true;
-		}
-	
-		
 	}
 }

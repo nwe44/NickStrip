@@ -175,8 +175,6 @@ nick.scroll = {
 	},
 	updateHorizontalScroller : function () {
 
-		console.log('called');
-
 		if(this.horizontal_scroll == null){
 			console.log('was null');
 			nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
@@ -206,7 +204,6 @@ nick.scroll = {
 				this.prev_section = this.section_flip.currPageY;
 			}
 		}
-		
 	},
 	init : function(){
 
@@ -270,18 +267,5 @@ nick.scroll = {
 			$('.head').removeClass('head-top');		
 		}
 		clearTimeout(nick.scroll.settings.timer);
-	},
-	inViewport : function($object){
-/*
-		var bottom = $(window).height() + $(window).scrollTop(),
-			top = $(window).scrollTop();
-		if( bottom <= $object.offset().top && top >= $object.offset().top + $object.height()){
-			return false;
-		}else{
-			return true;
-		}
-	
-		
-*/
 	}
 };
