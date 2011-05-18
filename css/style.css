@@ -231,6 +231,17 @@ body,
 	float: left;
 }
 
+/*sections */
+section{
+	color: #bada55;
+}
+.waypoint-active{
+	color: #444444;
+}
+.leftCol,
+.rightCol {
+	margin-top: 10%;
+}
 /* slideshow */
 .slideshow,
 .slideshow li{

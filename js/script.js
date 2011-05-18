@@ -1,7 +1,7 @@
 /* Author: Nick Evans
 
 */
-
+var nick = nick || {};
 nick = {
 	// universal, device independent behaviours
 	behaviours : function(){
@@ -21,13 +21,20 @@ nick = {
 	           $(this).parent().css('backgroundImage', "url(" + $(this).attr('src') + ')').end().remove();
            });
        }
+       $.fn.waypoint.defaults.offset = "75%";
+       $('section').each(function(){
+			$(this).waypoint(function() {
+			   $.waypoints().removeClass('waypoint-active');
+			   $(this).addClass('waypoint-active');
+			});
+       });
        
        // slideshows
        $('.slideshow').groupedCrossFader();
        
        $('body').removeClass('loading');
-	},	
-}
+	}	
+};
 
 $(document).ready(function() { 
 	nick.behaviours();
@@ -38,7 +45,7 @@ $(document).ready(function() {
         callback: function (url, result, key) {
 			if(result){
 				if(url === "js/mylibs/touchHelpers.js"){
-		           nick.touchBehaviours()			
+		           nick.touchBehaviours();			
 				}
 			}else{
 			   nick.desktopBehaviours();			   
