@@ -22,10 +22,16 @@ nick = {
            });
        }
        $.fn.waypoint.defaults.offset = "75%";
-       $('section').each(function(){
-			$(this).waypoint(function() {
-			   $.waypoints().removeClass('waypoint-active');
-			   $(this).addClass('waypoint-active');
+       $('.col').each(function(){
+			$(this).waypoint(function(event, direction) {
+				console.log( $(this).parent().attr('id'), event, direction);
+			   $.waypoints().parent().removeClass('waypoint-active');
+			   if(direction == "down"){
+				   $(this).parent().addClass('waypoint-active');			   
+			   }else{
+				   $(this).parent().prev().addClass('waypoint-active');			   			   	
+			   }
+
 			});
        });
        
