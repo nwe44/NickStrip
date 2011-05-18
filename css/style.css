@@ -242,6 +242,23 @@ section{
 .rightCol {
 	margin-top: 10%;
 }
+
+.static-title{
+	position: fixed;
+	top:-100px;
+	left: 150px;
+	font-size: 62px;
+	color: #fff;
+	text-shadow: 1px 1px 5px #ccc;
+	-webkit-transition: all 0.5s linear;
+	-moz-transition: all 0.5s linear;
+	-o-transition: all 0.5s linear;
+}
+
+.waypoint-active .static-title{
+	top:20px;
+}
+
 /* slideshow */
 .slideshow,
 .slideshow li{
