@@ -178,13 +178,13 @@ body,
 #container,
 #container-liner,
 .page,
-.title{
+.main-title{
 	height: 100%;
 	width: 100%;
 }
 .division,
 .head,
-.title{
+.main-title{
 	width: 100%;
 	height: 100%;
 	-webkit-background-size: auto 100%;
@@ -195,8 +195,10 @@ body,
 	overflow: hidden;
 	position: relative;
 }
-.title{
+.main-title{
 	position: absolute;
+	font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2";
+	text-indent: 20px;
 	z-index: 2;
 }
 .head{
@@ -247,16 +249,17 @@ section{
 	position: fixed;
 	top:-100px;
 	left: 150px;
-	font-size: 62px;
-	color: #fff;
-	text-shadow: 1px 1px 5px #ccc;
+	font-size: 24px;
+	font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2";
+	color: #bada55;
+	text-shadow: 1px 1px 0px #fff;
 	-webkit-transition: all 0.25s linear;
 	-moz-transition: all 0.25s linear;
 	-o-transition: all 0.25s linear;
 }
 
 .waypoint-active .static-title{
-	top:20px;
+	top:35px;
 }
 
 /* slideshow */
