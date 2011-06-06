@@ -636,7 +636,7 @@ Support:
 					 // If the plugin hasn't been initialized yet
 					// get the width of the container
 					var cw = $this.width();
-
+					
 					// put all elements in to an array, with a separate array item for their width
 					var $children = $this.children(),
 						slugWidth = 0,
@@ -648,7 +648,7 @@ Support:
 						var $slugItem = $children.eq(i);
 						
 						// find the current item's width
-						var slugItemWidth =  parseInt($slugItem.outerWidth(true));
+						var slugItemWidth =  parseInt($slugItem.width());
 						var slugItemHeight =  parseInt($slugItem.outerHeight(true));
 						if(slugItemHeight > maxHeight)
 							maxHeight = slugItemHeight;
@@ -676,7 +676,6 @@ Support:
 							noOfSlugs++;
 						}
 						
-						$slugItem.css("position", "absolute").css('left', slugWidth);
 						if(Modernizr.csstransitions){
 							var convertedSpeed = opts.transitionSpeed / 1000;
 							$slugItem.css('transition', 'opacity ' + convertedSpeed+'s ease-out');
@@ -688,9 +687,8 @@ Support:
 					if(!slugNo){
 						$children.slice(slugNo,$children.length).addClass("slug-" + noOfSlugs);
 					}else{
-						$children.slice(slugNo,$children.length).addClass("slug-" + noOfSlugs).css('opacity', '0');//.hide();
+						$children.slice(slugNo,$children.length).addClass("slug-" + noOfSlugs).css('opacity', '0').hide();
 					}					
-					$(this).height(maxHeight);
 
 					$(this).data('groupedCrossFader', {
 					   currentSlugNo : 0,
@@ -741,8 +739,14 @@ Support:
 				
 				// hide the current slug
 				currentSlug.each(function(i){
+					var that = this;
 					if(data.css3){
-						$(this).delay(i * 100).css("opacity", "0");
+//						this.timeout = setTimeout( function (i) { console.log(i);}, i * 1000);
+						$(this).delay(i * 100).queue(function(){
+							$(this).css("opacity", "0").delay(data.opts.transitionSpeed).queue(function(){
+								$(this).css('display', 'none');
+							});
+						});
 					}else{
 						$(this).delay(i * 100).fadeOut(data.opts.transitionSpeed);
 					}
@@ -751,7 +755,7 @@ Support:
 				// show the next slug
 				nextSlug.delay(currentSlug.length * 100).each(function(i){
 					if(data.css3){
-						$(this).delay((i * 100)+2000).css("display", 'block').css("opacity", "1");
+						$(this).delay((i *100)+200).css("display", 'block').css("opacity", "1");
 					}else{
 						$(this).delay(i * 100).fadeIn(data.opts.transitionSpeed);
 					}

@@ -7,24 +7,9 @@ nick = {
 	behaviours : function(){
 
 		// header
-		yepnope({
-                test: Modernizr.backgroundsize,
-                nope: ['js/libs/jquery.imgCenter.minified.js'],
-                callback: function (url, result, key) {
-                    $('.header .head').imgCenter();
-                    $('.slideshow li img').imgCenter();
-                }
-        });
-
-       if (Modernizr.backgroundsize) {
-           $('.head .title img, .slideshow li img').each(function(){
-	           $(this).parent().css('backgroundImage', "url(" + $(this).attr('src') + ')').end().remove();
-           });
-       }
        $.fn.waypoint.defaults.offset = "75%";
        $('.col').each(function(){
 			$(this).waypoint(function(event, direction) {
-				console.log( $(this).parent().attr('id'), event, direction);
 			   $.waypoints().parent().removeClass('waypoint-active');
 			   if(direction == "down"){
 				   $(this).parent().addClass('waypoint-active');			   
@@ -35,10 +20,10 @@ nick = {
 			});
        });
        
-       // slideshows
-       $('.slideshow').groupedCrossFader();
        
        $('body').removeClass('loading');
+      // slideshows
+       $('.slideshow').groupedCrossFader();
 	}	
 };
 
