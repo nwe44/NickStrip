@@ -251,6 +251,7 @@ nick.scroll = {
 	checkSize : function(st){
 		var $header = st.$header;
 		if($header.height() > 100 || -($('#container-liner').offset()).top < st.winHeight -100){
+			$header.css('font-size', $header.height()/4 + "px").css('line-height', $header.height() + "px");
 			var percentage = ($('#container-liner').offset()).top < 1 ? 
 						100 - (100 * -(($('#container-liner').offset()).top / st.winHeight )) : 100;
 			$header.css('height', percentage + "%");
