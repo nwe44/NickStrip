@@ -176,7 +176,6 @@ nick.scroll = {
 	updateHorizontalScroller : function () {
 
 		if(this.horizontal_scroll == null){
-			console.log('was null');
 			nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
 				hScrollbar: false,
 				vScrollbar: false,
@@ -188,10 +187,11 @@ nick.scroll = {
 			this.settings.prev_y = this.horizontal_scroll.y;
 			
 			if (this.section_flip.currPageY != this.settings.prev_section) {
-
 				this.horizontal_scroll = this.horizontal_scroll.destroy();
 				var oldItem = this.sections[this.prev_section].children[0];
 				var newItem = this.sections[this.section_flip.currPageY].children[0];
+				$(oldItem).parent().parent().removeClass('waypoint-active');
+				$(newItem).parent().parent().addClass('waypoint-active');
 				//oldItem.style.webkitTransitionDuration = '0';
 				//oldItem.style.webkitTransform = 'translate3d(' + nick.scroll.settings.prev_x + 'px, ' + nick.scroll.settings.prev_y + 'px, 0)';
 	
@@ -207,15 +207,16 @@ nick.scroll = {
 	},
 	init : function(){
 
+		// setting up the horizontal carousels
 		this.sections = document.querySelectorAll('.horizontal-carousel-wrapper');
+		
 		$(this.sections).each(function(){
-			$(this).children().eq(0).width(nick.scroll.setScrollerWidth($(this).children().eq(0).children()))
+			$(this).children().eq(0).width(nick.scroll.setScrollerWidth($(this).children().eq(0).children()));
 		});
 
 
-
+		
 		this.section_flip = new iScroll('container', {
-
 			hScrollbar: false,
 			vScrollbar: true,
 			snap: 'section',

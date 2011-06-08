@@ -198,8 +198,14 @@ body,
 .main-title{
 	position: absolute;
 	font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2";
-	text-indent: 20px;
 	z-index: 2;
+}
+.main-title h1{
+	display: inline-block;
+	background: rgba(0,0,0,0.3);
+	margin: 0;
+	padding: 0 10px;
+	color: #fff;
 }
 .head{
 	position: fixed;
@@ -247,21 +253,32 @@ section{
 
 .static-title{
 	position: fixed;
-	top:-100px;
-	left: 150px;
+	top:100px;
+	opacity: 0;
+	left: 132px;
 	font-size: 24px;
 	font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2";
-	color: #bada55;
-	text-shadow: 1px 1px 0px #fff;
+	color: #fff;
+	background: rgba(0,0,0,0.6);
 	-webkit-transition: all 0.25s linear;
 	-moz-transition: all 0.25s linear;
 	-o-transition: all 0.25s linear;
+	line-height: 100px;
+	padding: 0 10px;
 }
-
+.touch .static-title{
+	position: absolute;
+	top:100px;
+	z-index: 99;
+	opacity: 0;
+}
 .waypoint-active .static-title{
-	top:35px;
+	top:0px;
+	opacity: 1;
 }
+.touch .waypoint-active .static-title{
 
+}
 /* slideshow */
 .slideshow,
 .slideshow li{

@@ -4,23 +4,7 @@
 var nick = nick || {};
 nick = {
 	// universal, device independent behaviours
-	behaviours : function(){
-
-		// header
-       $.fn.waypoint.defaults.offset = "75%";
-       $('.col').each(function(){
-			$(this).waypoint(function(event, direction) {
-			   $.waypoints().parent().removeClass('waypoint-active');
-			   if(direction == "down"){
-				   $(this).parent().addClass('waypoint-active');			   
-			   }else{
-				   $(this).parent().prev().addClass('waypoint-active');			   			   	
-			   }
-
-			});
-       });
-       
-       
+	behaviours : function(){       
        $('body').removeClass('loading');
       // slideshows
        $('.slideshow').groupedCrossFader();
