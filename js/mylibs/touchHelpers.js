@@ -158,9 +158,11 @@ nick.scroll = {
 	settings : {
 		timer: null,
 		$header : $('header'),
+		headerHeight : null,
 		winHeight : $(window).height(),
 		prev_x : 0,
 		prev_y : 0,
+		inHeaderLockedOff: false
 	},
 	setScrollerWidth : function($children){
 		var slugWidth = 0,
@@ -191,7 +193,7 @@ nick.scroll = {
 				var oldItem = this.sections[this.prev_section].children[0];
 				var newItem = this.sections[this.section_flip.currPageY].children[0];
 				$(oldItem).parent().parent().removeClass('waypoint-active');
-				$(newItem).parent().parent().addClass('waypoint-active');
+				$(newItem).parent().parent().addClass('waypoint-active').removeClass('division-future division-past');
 				//oldItem.style.webkitTransitionDuration = '0';
 				//oldItem.style.webkitTransform = 'translate3d(' + nick.scroll.settings.prev_x + 'px, ' + nick.scroll.settings.prev_y + 'px, 0)';
 	
@@ -205,6 +207,66 @@ nick.scroll = {
 			}
 		}
 	},
+
+	
+	
+	resizeHeader : function(){
+		var st = nick.scroll.settings,
+			$header = st.$header,
+			percentage = ($('#container-liner').offset()).top < 1 ? 100 - (100 * -(($('#container-liner').offset()).top / st.winHeight )) : 100;
+			$header.css('font-size', $header.height()/4 + "px").css('line-height', $header.height() + "px");
+			$('.head .slideshow:hidden').groupedCrossFader('startAuto').fadeIn();
+			$header.css('height', percentage + "%");
+			nick.scroll.settings.headerHeight = $header.height();
+	},
+	
+	checkHeader : function(){
+		var st = nick.scroll.settings,
+			$header = st.$header;
+			
+		// check whether we need to set the z-index of the header
+		if($header.height() < st.winHeight){
+			$('.head').addClass('head-top');
+		}else{
+			$('.head').removeClass('head-top');
+		}
+		
+		if($header.height() > 100 || -($('#container-liner').offset()).top < st.winHeight -100){
+			nick.scroll.resizeHeader();
+			if( st.inHeaderLockedOff){
+				nick.scroll.settings.isHeaderLockedOff = false;
+			}
+		}else if( ! st.isHeaderLockedOff){ // no need to reset these values if we've already done it.
+			$header.css('height', 100 + "px")
+				.css('font-size', $header.height()/4 + "px")
+				.css('line-height', $header.height() + "px");
+			$('.head .slideshow').groupedCrossFader('pauseAuto').fadeOut();
+			$header.addClass('head-top');
+			nick.scroll.settings.headerHeight = $header.height();
+			nick.scroll.settings.isHeaderLockedOff = true;
+		}
+	},
+	onScrollEnd : function(){
+		// create a loop to discover if the header has reached it's destination size yet.
+		// if the size doesn't change on checking, then it has.
+		setTimeout(function(){
+			var heightBeforeChecking = nick.scroll.settings.$header.height();
+			nick.scroll.checkHeader();
+			if(heightBeforeChecking != nick.scroll.settings.headerHeight ){
+				nick.scroll.onScrollEnd();
+			}else{
+				if(nick.scroll.settings.$header.height() < nick.scroll.settings.winHeight){
+				console.log('ADDING THE CLASS');
+					$('.head').addClass('head-top');
+				}else{
+					console.log('removing the class');
+					$('.head').removeClass('head-top');
+				}
+				nick.scroll.updateHorizontalScroller.apply(nick.scroll);
+			}
+		}, 10);
+		
+	},
 	init : function(){
 
 		// setting up the horizontal carousels
@@ -214,60 +276,22 @@ nick.scroll = {
 			$(this).children().eq(0).width(nick.scroll.setScrollerWidth($(this).children().eq(0).children()));
 		});
 
-
-		
+		// this is the main section scroller, running from top to bottom
 		this.section_flip = new iScroll('container', {
 			hScrollbar: false,
 			vScrollbar: true,
 			snap: 'section',
 			momentum: false,
-			onScrollEnd: function(){nick.scroll.updateHorizontalScroller.apply(nick.scroll)}
+			onScrollMove: function(){nick.scroll.checkHeader.apply(nick.scroll)},
+			onScrollEnd: function(){nick.scroll.onScrollEnd.apply(nick.scroll)}
 		});
 		
+		// this is the first horizontal scroller
 		nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
 			hScrollbar: false,
 			vScrollbar: false,
 			snap:true
 		});
-		
-		this.setupHeader();
-		
-
-		
+		this.checkHeader();
 	},
-
-
-	
-	setupHeader : function(){
-		if(nick.scroll.settings.$header.height() < nick.scroll.settings.winHeight){
-			$('.head').addClass('head-top');
-		}else{
-			$('.head').removeClass('head-top');		
-		}
-		
-		nick.scroll.checkSize(nick.scroll.settings);
-		nick.scroll.settings.timer = setTimeout("nick.scroll.setupHeader()",10);	
-	},
-	
-	checkSize : function(st){
-		var $header = st.$header;
-		if($header.height() > 100 || -($('#container-liner').offset()).top < st.winHeight -100){
-			$header.css('font-size', $header.height()/4 + "px").css('line-height', $header.height() + "px");
-			var percentage = ($('#container-liner').offset()).top < 1 ? 
-						100 - (100 * -(($('#container-liner').offset()).top / st.winHeight )) : 100;
-			$header.css('height', percentage + "%");
-			$('.head .slideshow:hidden').groupedCrossFader('startAuto').fadeIn();
-		}else{
-			$header.css('height', 100 + "px");
-			$('.head .slideshow').groupedCrossFader('pauseAuto').fadeOut();
-		}
-	},
-	end : function(){
-		if(nick.scroll.settings.$header.height() < nick.scroll.settings.winHeight){
-			$('.head').addClass('head-top');
-		}else{
-			$('.head').removeClass('head-top');		
-		}
-		clearTimeout(nick.scroll.settings.timer);
-	}
 };

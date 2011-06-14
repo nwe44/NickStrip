@@ -524,9 +524,18 @@ nick.desktopBehaviours = function(){
 		$(this).waypoint(function(event, direction) {
 		   $.waypoints().parent().removeClass('waypoint-active');
 		   if(direction == "down"){
-			   $(this).parent().addClass('waypoint-active');			   
+			   $(this).parent()
+			   		.addClass('waypoint-active')
+			   		.removeClass('division-future division-past')
+			   		.prev()
+			   		.addClass('division-past');
 		   }else{
-			   $(this).parent().prev().addClass('waypoint-active');			   			   	
+			   $(this)
+			   	.parent()
+			   	.addClass('division-future')
+			   	.prev()
+			   	.addClass('waypoint-active')
+			   	.removeClass('division-future division-past');
 		   }
 	
 		});
@@ -543,8 +552,9 @@ nick.headerScroll = {
 		two: 'other'
 	},
 	init : function($header, headerHeight){
-		var winHeight = $(window).height()
-		var inPort = $(window).scrollTop() < winHeight - headerHeight;
+		var winHeight = $(window).height(),
+			inPort = $(window).scrollTop() < winHeight - headerHeight;
+
 		if($header.height() > headerHeight || $(window).scrollTop() < winHeight -200){
 			var percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / winHeight )) : 100;
 			$header.css('height', percentage + "%");

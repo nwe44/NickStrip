@@ -159,6 +159,7 @@ input:invalid, textarea:invalid {
 body, select, input, textarea {
   /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
   color: #444;
+  background: #333333;
   /* Set your base font here, to apply evenly */
   /* font-family: Georgia, serif;  */
 }
@@ -220,7 +221,8 @@ body,
 	overflow: hidden;
 }
 .head-top{
-	z-index: 4;
+	z-index: 999999;
+	border: 2px dashed red;
 }
 /* hide FOAT */
 .js .loading{
@@ -243,6 +245,12 @@ body,
 section{
 	color: #bada55;
 }
+.division{
+	background: #f1f1f1;
+}
+.division-empty{
+	background: transparent;
+}
 .waypoint-active{
 	color: #444444;
 }
@@ -253,28 +261,44 @@ section{
 
 .static-title{
 	position: fixed;
-	top:100px;
-	opacity: 0;
+	top:0px;
+/* 	overflow-y: hidden; */
+	opacity: 1;
 	left: 132px;
 	font-size: 24px;
 	font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2";
 	color: #fff;
-	background: rgba(0,0,0,0.6);
-	-webkit-transition: all 0.25s linear;
-	-moz-transition: all 0.25s linear;
-	-o-transition: all 0.25s linear;
 	line-height: 100px;
-	padding: 0 10px;
+	padding: 0;
+/*
+    -webkit-perspective: 100px;
+    -webkit-perspective-origin: 50% 50%;
+*/
+
 }
+.static-title span{
+	display: block;
+	-webkit-transition: all 0.2s linear;
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	background: rgba(0,0,0,0.6);
+	padding: 0 10px;
+	 -webkit-backface-visibility: hidden;
+}
+/*
+.division-past .static-title span{
+	-webkit-transform: translate3d(0, -50%, 0) rotateX(70deg) translate3d(0, -50%, 0);
+}
+.division-future .static-title span{
+	-webkit-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
+}
+*/
 .touch .static-title{
 	position: absolute;
-	top:100px;
 	z-index: 99;
-	opacity: 0;
 }
 .waypoint-active .static-title{
-	top:0px;
-	opacity: 1;
+
 }
 .touch .waypoint-active .static-title{
 
