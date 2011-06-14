@@ -560,12 +560,12 @@ nick.headerScroll = {
 			$header.css('height', percentage + "%");
 			
 			$header.css('font-size', $header.height()/4 + "px").css('line-height', $header.height() + "px");
-			$('.head .slideshow:hidden').groupedCrossFader('startAuto').fadeIn();
+			$('.head .slideshow:hidden').parent().removeClass('division-past').end().groupedCrossFader('startAuto').fadeIn();
 			$('.head').removeClass('head-top');
 		}else{
 			$header.css('height', headerHeight + "px");
 			$header.css('font-size', "24px").css('line-height', headerHeight + "px");
-			$('.head .slideshow').groupedCrossFader('pauseAuto').fadeOut();
+			$('.head .slideshow').parent().addClass('division-past').end().groupedCrossFader('pauseAuto').fadeOut();
 			$('.head').addClass('head-top');
 		}
 	}
