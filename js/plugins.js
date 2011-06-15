@@ -299,3 +299,128 @@ window.log = function(){
 		hoverPause:true
 	};
 })(jQuery);
+
+
+
+(function (window) {
+	var sch = function () {},
+		scrollableHeader = function () {
+        return new sch();
+    };
+
+	sch.prototype.settings = {
+		$header : null,
+		winHeight : null,
+		smallestHeight : null,
+		inHeaderLockedOff: false,
+		fontSize : null,
+		one: 1,
+		two: 'other'
+	};
+
+	sch.prototype.assessHeaderCondition = function () {
+
+		var s = this.settings,
+			that = this;
+
+		if (s.$header.height() > s.smallestHeight || $(window).scrollTop() < s.winHeight - 200) {
+
+			// resize the header
+			that.resizeElement(s.$header);
+
+			// resize any related elements
+			for (var i = 0, numberOfExtras = that.extraElements.length; i < numberOfExtras; i += 1){
+				that.resizeElement($(that.extraElements[i]));
+			}
+			 if (s.inHeaderLockedOff){
+
+				// remove the flag locking off the header
+				this.settings.inHeaderLockedOff = false;
+				
+				if (typeof(this.callbacks.onRemoveLockOff) == "function") {
+					this.callbacks.onRemoveLockOff();
+				}		 
+			 }
+
+
+		}else if (! s.inHeaderLockedOff){
+		
+			// we only need to lock everything off if it isn't already locked off.
+			that.lockOffElement(s.$header);			
+			for (var i = 0, numberOfExtras = that.extraElements.length; i < numberOfExtras; i += 1){
+				that.lockOffElement($(that.extraElements[i]));
+			}
+		}
+
+	};
+	
+	sch.prototype.assessViewPort = function () {
+
+		// if the height hasn't changes, we don't need to do anything
+		if (this.settings.winHeight != $(window).height() ) {
+
+			//it has, so lets update our memo
+			this.settings.winHeight = $(window).height();
+
+			// and see how it has effected our header			
+			this.assessHeaderCondition();
+
+		}	
+	};
+	
+	sch.prototype.resizeElement = function ($element) {
+		var s = this.settings;
+
+		var percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / s.winHeight )) : 100;
+
+		$element.css('height', percentage + "%");
+		
+		$element.css('font-size', $element.height()/4 + "px").css('line-height', $element.height() + "px");
+
+		if (typeof(this.callbacks.resizeHeader) == "function") {
+			this.callbacks.resizeHeader();
+		}
+	};
+	
+	sch.prototype.lockOffElement = function ($element) {
+
+		var s = this.settings;
+		
+		$element.css('height', s.smallestHeight + "px");
+		
+		$element.css('font-size', s.fontSize + "px").css('line-height', s.smallestHeight + "px");
+		
+		this.settings.inHeaderLockedOff = true;	
+		
+		if (typeof(this.callbacks.lockOffElement) == "function") {
+			this.callbacks.lockOffElement();
+		}
+	};
+	
+	sch.prototype.init = function (options) {
+
+		//setup the settings
+		this.settings.$header = options.header || $('header');
+		this.settings.smallestHeight = options.smallestHeight || 100;
+		this.settings.fontSize = options.fontSize || 24;
+		this.callbacks = options.callbacks || {};
+		this.extraElements = options.extraElements || [];
+		var that = this;
+		// here's where touch logic would go.
+		// maybe
+		
+		//bind the resize event
+		$(window).bind("scroll", function(event){ that.assessHeaderCondition(); });
+
+		$(window).bind("resize",function(event){ that.assessViewPort(); });
+
+		// turn over the engine once to see what's out there.
+		this.assessViewPort();
+		
+	};
+
+	window.scrollableHeader = scrollableHeader;
+  
+})(window);
+
+
