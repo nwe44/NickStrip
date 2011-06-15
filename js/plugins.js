@@ -301,12 +301,25 @@ window.log = function(){
 })(jQuery);
 
 
-
+// header sizing module
 (function (window) {
+	var ua = navigator.userAgent.toLowerCase();
+  isWebkit = !!ua.match(/applewebkit/i);
+  var supportsTouch = false;
+  try {
+    document.createEvent("TouchEvent");
+    supportsTouch = true;
+  } catch (e) {}
+  
 	var sch = function () {},
-		scrollableHeader = function () {
-        return new sch();
-    };
+		tsch = function () {},
+		scrollableHeader = function() {
+			if (supportsTouch && isWebkit) {
+				return new tsch();
+			} else {
+				return new sch();
+			}
+		};
 
 	sch.prototype.settings = {
 		$header : null,
@@ -314,16 +327,30 @@ window.log = function(){
 		smallestHeight : null,
 		inHeaderLockedOff: false,
 		fontSize : null,
-		one: 1,
-		two: 'other'
-	};
+		two: 'other',
+		
+		// non-fixed positioning settings
+		referencePointSelector : null, //'#container-liner'
 
+		// section flip settings
+		// possibly redundant
+		sections: null,	
+		horizontal_scroll : null,
+		section_flip : null,
+		prev_section : 0,
+		prev_x : 0,
+		prev_y : 0
+		
+	};
+	sch.prototype.getScrollPosition = function (){
+		return $(window).scrollTop();
+	};
 	sch.prototype.assessHeaderCondition = function () {
 
 		var s = this.settings,
 			that = this;
 
-		if (s.$header.height() > s.smallestHeight || $(window).scrollTop() < s.winHeight - 200) {
+		if (s.$header.height() > s.smallestHeight || that.getScrollPosition() < s.winHeight - 200) {
 
 			// resize the header
 			that.resizeElement(s.$header);
@@ -344,7 +371,7 @@ window.log = function(){
 
 
 		}else if (! s.inHeaderLockedOff){
-		
+			console.log('locking off header');
 			// we only need to lock everything off if it isn't already locked off.
 			that.lockOffElement(s.$header);			
 			for (var i = 0, numberOfExtras = that.extraElements.length; i < numberOfExtras; i += 1){
@@ -356,7 +383,8 @@ window.log = function(){
 	
 	sch.prototype.assessViewPort = function () {
 
-		// if the height hasn't changes, we don't need to do anything
+		// if the height hasn't changed, we don't need to do anything
+		// this.settings.winHeight == null on first run, so this returns true in that case.
 		if (this.settings.winHeight != $(window).height() ) {
 
 			//it has, so lets update our memo
@@ -406,8 +434,6 @@ window.log = function(){
 		this.callbacks = options.callbacks || {};
 		this.extraElements = options.extraElements || [];
 		var that = this;
-		// here's where touch logic would go.
-		// maybe
 		
 		//bind the resize event
 		$(window).bind("scroll", function(event){ that.assessHeaderCondition(); });
@@ -418,6 +444,72 @@ window.log = function(){
 		this.assessViewPort();
 		
 	};
+	
+	// touch events
+	tsch.prototype = new sch();
+	
+	tsch.prototype.resizeElement = function ($element) {
+		var s = this.settings,
+			that = this,
+			percentage = (that.getScrollPosition() > 1) ? 100 - (100 * -((-that.getScrollPosition() / s.winHeight ))) : 100;
+			
+			s.$header.css('font-size', s.$header.height()/4 + "px").css('line-height', s.$header.height() + "px");
+			
+			s.$header.css('height', percentage + "%");
+	};
+	tsch.prototype.getScrollPosition = function (){
+		var s = this.settings;
+		return -$(s.referencePointSelector).offset().top;
+	};
+	tsch.prototype.init = function (options) {
+
+		//setup the settings
+		this.settings.$header = options.header || $('header');
+		this.settings.smallestHeight = options.smallestHeight || 100;
+		this.settings.fontSize = options.fontSize || 24;
+		
+		this.settings.referencePointSelector = options.referencePointSelector || '#container-liner';
+
+		this.callbacks = options.callbacks || {};
+		this.extraElements = options.extraElements || [];
+		var that = this;
+		
+		// this is the main section scroller, running from top to bottom
+		this.section_flip = new iScroll('container', {
+			hScrollbar: false,
+			vScrollbar: true,
+			snap: 'section',
+			momentum: false,
+			onScrollMove: function(event){ that.assessHeaderCondition(); },
+			onScrollEnd: function(event){that.onScrollEnd();}
+		});
+
+		$(window).bind("resize",function(event){ that.assessViewPort(); });
+
+		// turn over the engine once to see what's out there.
+		this.assessViewPort();
+		
+	};
+	tsch.prototype.onScrollEndLoop = function(that){
+
+			var heightBeforeChecking = that.settings.$header.height();
+
+			that.assessHeaderCondition();
+
+			if(heightBeforeChecking != that.settings.$header.height() ){
+				that.onScrollEnd();
+			}	
+	};
+	tsch.prototype.onScrollEnd = function(){
+		var that = this;
+		// create a loop to discover if the header has reached it's destination size yet.
+		// if the size doesn't change on checking, then it has.
+		this.timer = setTimeout(function(){that.onScrollEndLoop(that)}, 10);
+		if (typeof(this.callbacks.onScrollEnd) == "function") {
+			this.callbacks.onScrollEnd(this);
+		}	
+	};
+
 
 	window.scrollableHeader = scrollableHeader;
   

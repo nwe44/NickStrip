@@ -147,151 +147,64 @@ MBP.autogrow = function (element, lh) {
 
 nick.touchBehaviours = function(){
 	MBP.hideUrlBar();
-	nick.scroll.init();
-};
+	var myHeader = new scrollableHeader();
+	
+	// setting up the horizontal carousels
+	myHeader.sections = document.querySelectorAll('.horizontal-carousel-wrapper');
+	
+	myHeader.init({
+		callbacks : {
+			lockOffElement : function () {
+				$('.head .slideshow')
+					.parent()
+					.addClass('division-past')
+					.end()
+					.groupedCrossFader('pauseAuto')
+					.addClass('slideshow-hidden');
+				$('.head').addClass('head-top');
+				$('#section-1 .static-title').removeClass('static-title-obscured');
+			},
+			onRemoveLockOff : function () {
+				$('.head .slideshow')
+					.parent()
+					.removeClass('division-past')
+					.end()
+					.groupedCrossFader('startAuto')
+					.removeClass('slideshow-hidden');
+				$('.head').removeClass('head-top');
+				$('#section-1 .static-title').addClass('static-title-obscured');
+			},
+			onScrollEnd : function (that) {
 
-nick.scroll = {
-	sections: null,
-	horizontal_scroll : null,
-	section_flip : null,
-	prev_section : 0,
-	settings : {
-		timer: null,
-		$header : $('header'),
-		headerHeight : null,
-		winHeight : $(window).height(),
-		prev_x : 0,
-		prev_y : 0,
-		inHeaderLockedOff: false
-	},
-	setScrollerWidth : function($children){
-		var slugWidth = 0,
-			slugItemWidth,
-			$slugItem;
-		for(var i = 0; i < $children.length; i++) {
-			$slugItem = $children.eq(i);
-			slugItemWidth =  parseInt($slugItem.outerWidth(true));
-			slugWidth += slugItemWidth;
-		}
-		return slugWidth;
-	},
-	updateHorizontalScroller : function () {
+				if (that.section_flip.currPageY != that.settings.prev_section) {
+//					that.horizontal_scroll = that.horizontal_scroll.destroy();
+					var oldItem = that.sections[that.settings.prev_section].children[0],
+						newItem = that.sections[that.section_flip.currPageY].children[0];
+					var oldDivision = (that.settings.prev_section > that.section_flip.currPageY) ? 'division-future' : 'division-past';
+					
+					
+					// something weird is happening here on multiple scrolls.
+					$('.waypoint-active').removeClass('waypoint-active').addClass(oldDivision);
+					$(newItem).parent().parent().addClass('waypoint-active').removeClass('division-future division-past');
 
-		if(this.horizontal_scroll == null){
-			nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
-				hScrollbar: false,
-				vScrollbar: false,
-				snap:true
-			});
-		}
-		if(this.section_flip != null){
-			this.settings.prev_x = this.horizontal_scroll.x;
-			this.settings.prev_y = this.horizontal_scroll.y;
-			
-			if (this.section_flip.currPageY != this.settings.prev_section) {
-				this.horizontal_scroll = this.horizontal_scroll.destroy();
-				var oldItem = this.sections[this.prev_section].children[0];
-				var newItem = this.sections[this.section_flip.currPageY].children[0];
-				$(oldItem).parent().parent().removeClass('waypoint-active');
-				$(newItem).parent().parent().addClass('waypoint-active').removeClass('division-future division-past');
-				//oldItem.style.webkitTransitionDuration = '0';
-				//oldItem.style.webkitTransform = 'translate3d(' + nick.scroll.settings.prev_x + 'px, ' + nick.scroll.settings.prev_y + 'px, 0)';
-	
-				this.horizontal_scroll = new iScroll( this.sections[this.section_flip.currPageY], {
-					hScrollbar: false,
-					vScrollbar: false,
-					snap:true
-				});
-				//$(nick.scroll.settings.horizontal_scroll.scroller).css("-webkit-transform",'100 100').css('border', '1px solid blue').css('-webkit-transform-origin','100 100');
-				this.prev_section = this.section_flip.currPageY;
-			}
-		}
-	},
 
-	
-	
-	resizeHeader : function(){
-		var st = nick.scroll.settings,
-			$header = st.$header,
-			percentage = ($('#container-liner').offset()).top < 1 ? 100 - (100 * -(($('#container-liner').offset()).top / st.winHeight )) : 100;
-			$header.css('font-size', $header.height()/4 + "px").css('line-height', $header.height() + "px");
-			$('.head .slideshow:hidden').groupedCrossFader('startAuto').fadeIn();
-			$header.css('height', percentage + "%");
-			nick.scroll.settings.headerHeight = $header.height();
-	},
-	
-	checkHeader : function(){
-		var st = nick.scroll.settings,
-			$header = st.$header;
-			
-		// check whether we need to set the z-index of the header
-		if($header.height() < st.winHeight){
-			$('.head').addClass('head-top');
-		}else{
-			$('.head').removeClass('head-top');
-		}
+					//oldItem.style.webkitTransitionDuration = '0';
+					//oldItem.style.webkitTransform = 'translate3d(' + nick.scroll.settings.prev_x + 'px, ' + nick.scroll.settings.prev_y + 'px, 0)';
+/*
 		
-		if($header.height() > 100 || -($('#container-liner').offset()).top < st.winHeight -100){
-			nick.scroll.resizeHeader();
-			if( st.inHeaderLockedOff){
-				nick.scroll.settings.isHeaderLockedOff = false;
-			}
-		}else if( ! st.isHeaderLockedOff){ // no need to reset these values if we've already done it.
-			$header.css('height', 100 + "px")
-				.css('font-size', $header.height()/4 + "px")
-				.css('line-height', $header.height() + "px");
-			$('.head .slideshow').groupedCrossFader('pauseAuto').fadeOut();
-			$header.addClass('head-top');
-			nick.scroll.settings.headerHeight = $header.height();
-			nick.scroll.settings.isHeaderLockedOff = true;
-		}
-	},
-	onScrollEnd : function(){
-		// create a loop to discover if the header has reached it's destination size yet.
-		// if the size doesn't change on checking, then it has.
-		setTimeout(function(){
-			var heightBeforeChecking = nick.scroll.settings.$header.height();
-			nick.scroll.checkHeader();
-			if(heightBeforeChecking != nick.scroll.settings.headerHeight ){
-				nick.scroll.onScrollEnd();
-			}else{
-				if(nick.scroll.settings.$header.height() < nick.scroll.settings.winHeight){
-				console.log('ADDING THE CLASS');
-					$('.head').addClass('head-top');
-				}else{
-					console.log('removing the class');
-					$('.head').removeClass('head-top');
+					this.horizontal_scroll = new iScroll( this.sections[this.section_flip.currPageY], {
+						hScrollbar: false,
+						vScrollbar: false,
+						snap:true
+					});
+*/
+					//$(nick.scroll.settings.horizontal_scroll.scroller).css("-webkit-transform",'100 100').css('border', '1px solid blue').css('-webkit-transform-origin','100 100');
+					that.settings.prev_section = that.section_flip.currPageY;
 				}
-				nick.scroll.updateHorizontalScroller.apply(nick.scroll);
+
+			
 			}
-		}, 10);
-		
-	},
-	init : function(){
-
-		// setting up the horizontal carousels
-		this.sections = document.querySelectorAll('.horizontal-carousel-wrapper');
-		
-		$(this.sections).each(function(){
-			$(this).children().eq(0).width(nick.scroll.setScrollerWidth($(this).children().eq(0).children()));
-		});
-
-		// this is the main section scroller, running from top to bottom
-		this.section_flip = new iScroll('container', {
-			hScrollbar: false,
-			vScrollbar: true,
-			snap: 'section',
-			momentum: false,
-			onScrollMove: function(){nick.scroll.checkHeader.apply(nick.scroll)},
-			onScrollEnd: function(){nick.scroll.onScrollEnd.apply(nick.scroll)}
-		});
-		
-		// this is the first horizontal scroller
-		nick.scroll.horizontal_scroll = new iScroll(nick.scroll.sections[0], {
-			hScrollbar: false,
-			vScrollbar: false,
-			snap:true
-		});
-		this.checkHeader();
-	},
+		},
+		extraElements : ['#section-1 .static-title']
+	});
 };
