@@ -545,26 +545,16 @@ nick.desktopBehaviours = function(){
 	myHeader.init({
 		callbacks : {
 			lockOffElement : function () {
-				$('.head .slideshow')
-					.parent()
-					.addClass('division-past')
-					.end()
-					.groupedCrossFader('pauseAuto')
-					.addClass('slideshow-hidden');
+				$("#mainMessage").addClass('main-message-hidden');
 				$('.head').addClass('head-top');
 				$('#section-1 .static-title').removeClass('static-title-obscured');
 			},
 			onRemoveLockOff : function () {
-				$('.head .slideshow')
-					.parent()
-					.removeClass('division-past')
-					.end()
-					.groupedCrossFader('startAuto')
-					.removeClass('slideshow-hidden');
+				$("#mainMessage").removeClass('main-message-hidden');
 				$('.head').removeClass('head-top');
 				$('#section-1 .static-title').addClass('static-title-obscured');
 			}
 		},
-		extraElements : ['#section-1 .static-title']
+		extraElements : ['#section-1 .static-title', "#mainMessage"]
 	});
 }

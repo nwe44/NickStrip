@@ -3,11 +3,20 @@
 */
 var nick = nick || {};
 nick = {
+	settings : {
+		mainMessageHeight : $(window).height()
+	},
 	// universal, device independent behaviours
 	behaviours : function(){       
        $('body').removeClass('loading');
       // slideshows
        $('.slideshow').groupedCrossFader();
+       
+       $('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight + "px").css('fontSize', nick.settings.mainMessageHeight);
+       $(window).resize(function () {
+       nick.settings.mainMessageHeight = $(window).height();
+        $('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight + "px").css('fontSize', nick.settings.mainMessageHeight)
+       });
 	}	
 };
 
