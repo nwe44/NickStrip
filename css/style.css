@@ -262,7 +262,10 @@ body,
 
 /*sections */
 section{
-	color: #bada55;
+	color: #e2e2e2;
+	-webkit-transition: color 0.3s linear;
+	-moz-transition: color 0.3s linear;
+	-o-transition: color 0.3s linear;
 }
 .division{
 	background: #e2e2e2;

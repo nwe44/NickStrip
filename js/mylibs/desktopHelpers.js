@@ -519,8 +519,8 @@ Support:
 nick.desktopBehaviours = function(){
 
 	// header
-	$.fn.waypoint.defaults.offset = "75%";
-	$('.col').each(function(){
+	$.fn.waypoint.defaults.offset = "100%";
+	$('.horizontal-carousel-wrapper').each(function(){
 		$(this).waypoint(function(event, direction) {
 		   $.waypoints().parent().removeClass('waypoint-active');
 		   if(direction == "down"){
@@ -545,16 +545,16 @@ nick.desktopBehaviours = function(){
 	myHeader.init({
 		callbacks : {
 			lockOffElement : function () {
-				$("#mainMessage").addClass('main-message-hidden');
+				$("#mainMessage").css('height', "100px").addClass('main-message-hidden');
 				$('.head').addClass('head-top');
 				$('#section-1 .static-title').removeClass('static-title-obscured');
 			},
 			onRemoveLockOff : function () {
-				$("#mainMessage").removeClass('main-message-hidden');
+				$("#mainMessage").css('height', "100%").removeClass('main-message-hidden');
 				$('.head').removeClass('head-top');
 				$('#section-1 .static-title').addClass('static-title-obscured');
 			}
 		},
-		extraElements : ['#section-1 .static-title', "#mainMessage"]
+		extraElements : ['#section-1 .static-title']
 	});
 }
