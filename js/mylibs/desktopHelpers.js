@@ -519,8 +519,8 @@ Support:
 nick.desktopBehaviours = function(){
 
 	// header
-	$.fn.waypoint.defaults.offset = "100%";
-	$('.horizontal-carousel-wrapper').each(function(){
+	$.fn.waypoint.defaults.offset = "70%";
+	$('.horizontal-carousel').each(function(){
 		$(this).waypoint(function(event, direction) {
 		   $.waypoints().parent().removeClass('waypoint-active');
 		   if(direction == "down"){
@@ -554,7 +554,6 @@ nick.desktopBehaviours = function(){
 				$('.head').removeClass('head-top');
 				$('#section-1 .static-title').addClass('static-title-obscured');
 			}
-		},
-		extraElements : ['#section-1 .static-title']
+		} //,extraElements : ['#section-1 .static-title']
 	});
 }
