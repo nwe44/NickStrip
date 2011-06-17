@@ -211,11 +211,17 @@ window.log = function(){
 	tsch.prototype.resizeElement = function ($element) {
 		var s = this.settings,
 			that = this,
-			percentage = (that.getScrollPosition() > 1) ? 100 - (100 * -((-that.getScrollPosition() / s.winHeight ))) : 100;
-			
-			s.$header.css('font-size', s.$header.height()/4 + "px").css('line-height', s.$header.height() + "px");
-			
+			myScrollPosition = that.getScrollPosition();
+			percentage = (myScrollPosition > 1) ? 100 - (100 * -((-myScrollPosition / s.winHeight ))) : 100,
+			$newHeaderHeight = s.$header.height(),
+			$newHeaderTitle = s.$header.find('h1').clone( true );
+
+			// doing dom changes to an off line element saves reflows
+			$newHeaderTitle
+				.css('font-size', $newHeaderHeight/4 + "px")
+				.css('line-height', $newHeaderHeight + "px");
 			s.$header.css('height', percentage + "%");
+			s.$header.find('h1').replaceWith($newHeaderTitle);
 	};
 	tsch.prototype.getScrollPosition = function (){
 		var s = this.settings;
