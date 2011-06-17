@@ -150,25 +150,32 @@ nick.touchBehaviours = function(){
 	var myHeader = new scrollableHeader();
 	
 	// setting up the horizontal carousels
-	myHeader.sections = document.querySelectorAll('.horizontal-carousel-wrapper');
+	myHeader.sections = document.querySelectorAll('.division');
 	
 	myHeader.init({
 		callbacks : {
 			lockOffElement : function () {
-				$("#mainMessage").addClass('main-message-hidden');
+				$("#mainMessage")
+					.css('height', '100px')
+					.addClass('main-message-hidden')
+					.parent()
+					.addClass('division-past');
 				$('.head').addClass('head-top');
 				$('#section-1 .static-title').removeClass('static-title-obscured');
 			},
 			onRemoveLockOff : function () {
 
-				$("#mainMessage").RemoveClass('main-message-hidden');
+				$("#mainMessage")
+					.css('height', 'auto')
+					.removeClass('main-message-hidden')
+					.parent()
+					.removeClass('division-past');
 				$('.head').removeClass('head-top');
 				$('#section-1 .static-title').addClass('static-title-obscured');
 			},
 			onScrollEnd : function (that) {
 
 				if (that.section_flip.currPageY != that.settings.prev_section) {
-//					that.horizontal_scroll = that.horizontal_scroll.destroy();
 					var oldItem = that.sections[that.settings.prev_section].children[0],
 						newItem = that.sections[that.section_flip.currPageY].children[0];
 					var oldDivision = (that.settings.prev_section > that.section_flip.currPageY) ? 'division-future' : 'division-past';
@@ -176,8 +183,8 @@ nick.touchBehaviours = function(){
 					
 					// something weird is happening here on multiple scrolls.
 					$('.waypoint-active').removeClass('waypoint-active').addClass(oldDivision);
-					$(newItem).parent().parent().addClass('waypoint-active').removeClass('division-future division-past');
-
+					$(newItem).parent().addClass('waypoint-active').removeClass('division-future division-past');
+					console.log($(newItem).attr('class'));
 
 					//oldItem.style.webkitTransitionDuration = '0';
 					//oldItem.style.webkitTransform = 'translate3d(' + nick.scroll.settings.prev_x + 'px, ' + nick.scroll.settings.prev_y + 'px, 0)';
