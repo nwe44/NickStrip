@@ -207,13 +207,17 @@ body,
 	height: 100%;
 	-webkit-background-size: auto 100%;
 	background-size: contain;
-/* 	background-color: rgba(0,0,0,0.2); */
 	background-repeat: no-repeat;
 	background-position: left center;
 	overflow: hidden;
 	position: relative;
-	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
 }
+.touch .division,
+.touch .head,
+.touch .main-title{
+ 	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1); */
+}
+
 .main-title{
 	position: absolute;
 	font-family: "meta", "ff-meta-web-pro-1","ff-meta-web-pro-2";
@@ -223,14 +227,17 @@ body,
 	display: inline-block;
 	background: transparent;
 	margin: 0;
-	padding: 0 0 0 0.5em;
-	width: 4em;
-	color: #00FF00;
-	text-align: right;
+	padding: 0 0 0 1.5em;
+	width: 3em;
+	text-align: left;
+	color: #EF4136;
+	-webkit-transition: padding 0.3s linear;
+	-moz-transition: padding 0.3s linear;
+	-o-transition: padding 0.3s linear;	
 	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
 }
 .no-touch .main-title h1{
-	opacity: 0.5;
+	opacity: 0.7;
 }
 .head{
 	position: fixed;
@@ -246,6 +253,12 @@ body,
 }
 .head-top{
 	z-index: 999999;
+}
+.head-top h1{
+	padding: 0 0 0 0.5em;
+}
+.no-touch .head-top h1{
+	opacity: 1;
 }
 .main-sprite{
 	background-color: transparent;
@@ -270,11 +283,17 @@ body,
 /* main message */
 .main-message{
 	margin: 0;
-	padding: 0;
+	padding:0;
+	font-family: "meta", "ff-meta-web-pro-1","ff-meta-web-pro-2";
 	-webkit-transition: margin 0.3s linear;
 	-moz-transition: margin 0.3s linear;
 	-o-transition: margin 0.3s linear;	
-	color: #ED1F24;
+	color: #27AAE1;
+	width: 100%;
+	text-align: right;
+}
+.main-message span{
+	margin-right: 1.5em;
 }
 .main-message-hidden{
 	margin-top: -100px;
@@ -293,9 +312,9 @@ section{
 .division{
 	background: #e2e2e2;
 	color: #e2e2e2;
-	-webkit-transition: color 0.1s linear;
-	-moz-transition: color 0.1s linear;
-	-o-transition: color 0.1s linear;
+	-webkit-transition: color 0.3s linear;
+	-moz-transition: color 0.3s linear;
+	-o-transition: color 0.3s linear;
 	
 }
 .division-empty{
@@ -313,18 +332,20 @@ section{
 	top:0px;
 	overflow-y: hidden;
 	opacity: 1;
-	left: 5em;
+	left: 4em;
 	font-size: 24px;
-	font-family: "ff-meta-web-pro-1","ff-meta-web-pro-2";
+
 	color: #444444;
 	line-height: 100px;
 	height: 100px;
 	width: 100%;
 	padding: 0 100px 0 0;
 	z-index: 2;
+
+}
+.no-touch .static-title{
 	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
 }
-
 .static-title span{
 	display: block;
 	-webkit-transition: all 0.3s linear;
@@ -334,6 +355,7 @@ section{
 	border-left: 2px solid #999999;
 	padding: 0 10px;
 	position: absolute;
+	font-family: "meta", "ff-meta-web-pro-1","ff-meta-web-pro-2";
 }
 .division-past .static-title span{
 	top:-100%;
@@ -360,13 +382,13 @@ section{
 	height: 100%;
 }
 .figcaption-liner{
-	margin-top: 100px;
-	margin-right: 130px;	
+	margin-top: 200px;
+	margin-right: 96px;	
 }
 .figcaption-liner-bottom{
 	position: absolute;
-	bottom: 200px;
-	margin-left: 130px;
+	bottom:100px;
+	margin-left: 108px;
 	margin-right: 0;
 }
 
@@ -381,6 +403,7 @@ section{
 .horizontal-carousel-slide,
 .horizontal-carousel-controls{
 	height: 100%;
+	display: block;
 }
 
 .horizontal-carousel-slider,
@@ -396,6 +419,7 @@ section{
 }
 .horizontal-carousel-slide{
 	background-size: cover;
+	background-position: center center;
 }
 .horizontal-carousel-pager,
 .horizontal-carousel-controls{
@@ -524,10 +548,43 @@ section{
   /* Style adjustments for landscape mode goes here */
 
 }
-@media screen and (max-width: 1024px) {
+@media screen and (min-width:900px) and (max-width: 924px) {
+	.col{
+		font-size: 93%;
+	}
+}
+@media screen and (min-width:924px) and (max-width: 1024px){
+
 	.horizontal-carousel img{
 		left: -100px;
 		position: relativel
+	}
+	.col{
+	font-size: 93%;
+
+	}
+	.figcaption-liner-bottom{
+		bottom: 15px;
+	}
+}
+
+@media screen and (min-width:1024px) and (max-width: 1124px) {
+	.col{
+		font-size: 108%;
+	}
+	.figcaption-liner-bottom{
+		bottom: 40px;
+	}
+}
+@media screen and (min-width:1124px) and (max-width: 1224px) {
+	.col{
+		font-size: 123.1%;
+
+	}
+}
+@media screen and (min-width: 1224px) {
+	.col{
+		font-size: 138.5%;
 	}
 }
 /* Grade-A Mobile Browsers (Opera Mobile, Mobile Safari, Android Chrome)

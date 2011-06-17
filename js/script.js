@@ -4,7 +4,7 @@
 var nick = nick || {};
 nick = {
 	settings : {
-		mainMessageHeight : $(window).height()
+		mainMessageHeight : $(window).height() / 4
 	},
 	// universal, device independent behaviours
 	behaviours : function(){   	
@@ -43,8 +43,8 @@ nick = {
 		// size the main message
 		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight + "px").css('fontSize', nick.settings.mainMessageHeight);
 		$(window).resize(function () {
-			nick.settings.mainMessageHeight = $(window).height();
-			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight + "px").css('fontSize', nick.settings.mainMessageHeight)
+			nick.settings.mainMessageHeight = $(window).height() / 4;
+			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight + "px").css('fontSize', nick.settings.mainMessageHeight);
 		});
 		
 	}	
