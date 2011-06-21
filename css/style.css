@@ -239,6 +239,9 @@ body,
 .main-title h1{
 	display: inline-block;
 	background: transparent;
+	font-style: normal;
+	font-weight: normal;
+	font-stretch: normal;
 	margin: 0;
 	padding: 0 0 0 0.5em;
 	width: 3em;
@@ -416,7 +419,12 @@ section{
 	right: 20px;
 	padding: 0;
 }
-
+strong{
+	font-style: normal;
+	font-weight: normal;
+	font-stretch: normal;
+	color: #EF4136;
+}
 /* .horizontal-carousel (extends figure) */
 
 .horizontal-carousel{
