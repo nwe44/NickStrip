@@ -202,7 +202,6 @@ nick.touchBehaviours = function(){
 
 			
 			}
-		},
-		extraElements : ['#section-1 .static-title']
+		}
 	});
 };
