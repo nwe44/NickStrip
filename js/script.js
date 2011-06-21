@@ -41,10 +41,10 @@ nick = {
 		});
 		
 		// size the main message
-		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight + "px").css('fontSize', nick.settings.mainMessageHeight);
+		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight*2 + "px").css('fontSize', nick.settings.mainMessageHeight);
 		$(window).resize(function () {
-			nick.settings.mainMessageHeight = $(window).height() / 4;
-			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight + "px").css('fontSize', nick.settings.mainMessageHeight);
+			nick.settings.mainMessageHeight = $(window).height() / 2;
+			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight*2 + "px").css('fontSize', nick.settings.mainMessageHeight);
 		});
 		
 	}	
