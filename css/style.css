@@ -330,7 +330,7 @@ section{
 }
 .division{
 	background: #e2e2e2;
-	color: #e2e2e2;
+	color: #444444;
 	-webkit-transition: color 0.3s linear;
 	-moz-transition: color 0.3s linear;
 	-o-transition: color 0.3s linear;
@@ -338,12 +338,6 @@ section{
 }
 .division-empty{
 	background: transparent;
-}
-.waypoint-active{
-	color: #444444;
-	-webkit-transition: color 1s linear;
-	-moz-transition: color 1s linear;
-	-o-transition: color 1s linear;
 }
 
 .static-title{
