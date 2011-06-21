@@ -230,14 +230,17 @@ body,
 
 .main-title{
 	position: absolute;
-	font-family: "meta", "ff-meta-web-pro-1","ff-meta-web-pro-2";
+	font-family: "Fedra Sans Display 1 Thin Condensed";
+	font-style: normal;
+	font-weight: normal;
+	font-stretch: normal;
 	z-index: 2;
 }
 .main-title h1{
 	display: inline-block;
 	background: transparent;
 	margin: 0;
-	padding: 0 0 0 1.5em;
+	padding: 0 0 0 0.5em;
 	width: 3em;
 	text-align: left;
 	color: #EF4136;
@@ -297,7 +300,10 @@ body,
 .main-message{
 	margin: 0;
 	padding:0;
-	font-family: "meta", "ff-meta-web-pro-1","ff-meta-web-pro-2";
+	font-family: "Fedra Sans Display 1 Thin Condensed";
+	font-style: normal;
+	font-weight: normal;
+	font-stretch: normal;
 	-webkit-transition: margin 0.3s linear;
 	-moz-transition: margin 0.3s linear;
 	-o-transition: margin 0.3s linear;	
@@ -306,7 +312,7 @@ body,
 	text-align: right;
 }
 .main-message span{
-	margin-right: 1.5em;
+	margin-right: 0.5em;
 }
 .main-message-hidden{
 	margin-top: -100px;
@@ -345,8 +351,8 @@ section{
 	top:0px;
 	overflow-y: hidden;
 	opacity: 1;
-	left: 4em;
-	font-size: 24px;
+	left: 2.5em;
+	font-size: 44px;
 
 	color: #444444;
 	line-height: 100px;
@@ -368,7 +374,10 @@ section{
 	border-left: 2px solid #999999;
 	padding: 0 10px;
 	position: absolute;
-	font-family: "meta", "ff-meta-web-pro-1","ff-meta-web-pro-2";
+	font-family: "Fedra Sans Display 1 Thin Condensed";
+	font-style: normal;
+	font-weight: normal;
+	font-stretch: normal;
 }
 .division-past .static-title span{
 	top:-100%;
@@ -397,13 +406,18 @@ section{
 	z-index: 9;
 	margin: 0 auto;
 	background: rgba(240,240,240,0.8);
+	line-height: 2em;
 	padding:20px 0;
+	font-family: "Fedra Sans Display 1 Thin Condensed";
+	font-style: normal;
+	font-weight: normal;
+	font-stretch: normal;
 
 }
 .figcaption-liner{
 	position: absolute;
 	bottom: 100px;
-	width: 33%;
+	width: 50%;
 	margin: 0;
 	right: 20px;
 	padding: 0;
@@ -420,7 +434,6 @@ section{
 .no-touch .horizontal-carousel{
 	position: fixed;
 	top:100%;
-	opacity: 0;
 	-webkit-transition: all 0.6s ease-in-out;
 	-moz-transition: all 0.6s ease-in-out;
 	-o-transition: all 0.6s ease-in-out;
@@ -594,7 +607,7 @@ section{
 }
 @media screen and (min-width:900px) and (max-width: 924px) {
 	.col{
-		font-size: 93%;
+	font-size: 174%;
 	}
 }
 @media screen and (min-width:924px) and (max-width: 1024px){
@@ -604,8 +617,8 @@ section{
 		position: relativel
 	}
 	.col{
-	font-size: 93%;
 
+		font-size: 182%;
 	}
 	.figcaption-liner-bottom{
 		bottom: 15px;
@@ -614,7 +627,7 @@ section{
 
 @media screen and (min-width:1024px) and (max-width: 1124px) {
 	.col{
-		font-size: 108%;
+		font-size: 189%;
 	}
 	.figcaption-liner-bottom{
 		bottom: 40px;
@@ -622,13 +635,14 @@ section{
 }
 @media screen and (min-width:1124px) and (max-width: 1224px) {
 	.col{
-		font-size: 123.1%;
+
+		font-size: 197%
 
 	}
 }
 @media screen and (min-width: 1224px) {
 	.col{
-		font-size: 138.5%;
+		font-size: 197%;
 	}
 }
 /* Grade-A Mobile Browsers (Opera Mobile, Mobile Safari, Android Chrome)

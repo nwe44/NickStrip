@@ -163,7 +163,7 @@ window.log = function(){
 
 		$element.css('height', percentage + "%");
 		
-		$element.css('font-size', $element.height()/4 + "px").css('line-height', $element.height() + "px");
+		$element.css('font-size', $element.height()/2 + "px").css('line-height', $element.height() + "px");
 
 		if (typeof(this.callbacks.resizeHeader) == "function") {
 			this.callbacks.resizeHeader();
@@ -190,7 +190,7 @@ window.log = function(){
 		//setup the settings
 		this.settings.$header = options.header || $('header');
 		this.settings.smallestHeight = options.smallestHeight || 100;
-		this.settings.fontSize = options.fontSize || 24;
+		this.settings.fontSize = options.fontSize || 44;
 		this.callbacks = options.callbacks || {};
 		this.extraElements = options.extraElements || [];
 		var that = this;
