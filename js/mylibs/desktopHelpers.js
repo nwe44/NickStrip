@@ -520,18 +520,17 @@ nick.desktopBehaviours = function(){
 
 	// header
 	$.fn.waypoint.defaults.offset = "70%";
-	$('.horizontal-carousel').each(function(){
+	$('.division').each(function(){
 		$(this).waypoint(function(event, direction) {
-		   $.waypoints().parent().removeClass('waypoint-active');
+		   $.waypoints().removeClass('waypoint-active');
 		   if(direction == "down"){
-			   $(this).parent()
+			   $(this)
 			   		.addClass('waypoint-active')
 			   		.removeClass('division-future division-past')
 			   		.prev()
 			   		.addClass('division-past');
 		   }else{
 			   $(this)
-			   	.parent()
 			   	.addClass('division-future')
 			   	.prev()
 			   	.addClass('waypoint-active')
@@ -553,6 +552,7 @@ nick.desktopBehaviours = function(){
 				$("#mainMessage").css('height', "100%").removeClass('main-message-hidden');
 				$('.head').removeClass('head-top');
 				$('#section-1 .static-title').addClass('static-title-obscured');
+
 			}
 		} //,extraElements : ['#section-1 .static-title']
 	});
