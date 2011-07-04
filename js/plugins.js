@@ -645,13 +645,12 @@ window.log = function(){
 	};
 	
 	sch.prototype.resizeElement = function ($element) {
-		var s = this.settings;
-
-		var percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / s.winHeight )) : 100;
-
+		var s = this.settings,
+			percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / s.winHeight )) : 100;
+		
 		$element.css('height', percentage + "%");
 		
-		$element.css('font-size', $element.height()/2 + "px").css('line-height', $element.height() + "px");
+		$element.css('font-size', $element.height() / 2 + "px").css('line-height', $element.height() + "px");
 
 		if (typeof(this.callbacks.resizeHeader) == "function") {
 			this.callbacks.resizeHeader();
