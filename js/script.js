@@ -78,11 +78,9 @@ $(document).ready(function() {
         }
     }
 	]);
-/*
     if (Modernizr.backgroundsize) { // this should not be necessary. Build for the best browsers, so make the markup right first
         $('.horizontal-carousel-slide img').each(function () {
             $(this).parent().css('backgroundImage', "url(" + $(this).attr('src') + ')').end().remove();
         });
     }
-*/
 });
