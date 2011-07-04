@@ -157,7 +157,9 @@
 	</script>
 	<script id="sectionTmpl" type="text/x-jquery-tmpl"> 
 		<section id="section-${sectionName}" class="body division division-future">
-			<h1 class="static-title static-title-obscured"><span class="static-title-liner">${headline}</span></h1>
+			<h1 class="static-title{{if titleObscured}} static-title-obscured{{/if}} ">
+				<span class="static-title-liner">${headline}</span>
+			</h1>
 			<figure class="horizontal-carousel horizontal-carousel-obscured">
 				<ul id="slider${sectionName}" class="horizontal-carousel-slider">
 					{{each images}}
