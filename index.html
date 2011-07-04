@@ -124,6 +124,37 @@
   <script src="js/script.js"></script>
   <!-- end scripts-->
 
+	<script> 
+		// separation of concerns, content should be here.
+		nick.stripContent = [
+		// first and last sections are special cases.
+		{
+			sectionName : 1,
+			titleObscured : true,
+			headline : "I design websites", 
+			callout : "Because blah",
+			mainText : "This is the main text",
+			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
+		
+		},
+		{
+			sectionName : 2, 
+			headline : "I used to design for print", 
+			callout : "This is where I learnt to tell stories.",
+			mainText : "This is the main text",
+			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
+		
+		},
+		{
+			sectionName : 3, 
+			headline : "I can code what I design.", 
+			callout : "Because I want to know every detail is perfect.",
+			mainText : "This is the main text",
+			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
+		
+		} // first and last sections are special cases.
+	]
+	</script>
 	<script id="sectionTmpl" type="text/x-jquery-tmpl"> 
 		<section id="section-${sectionName}" class="body division division-future">
 			<h1 class="static-title static-title-obscured"><span class="static-title-liner">${headline}</span></h1>

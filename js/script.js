@@ -49,36 +49,7 @@ nick = {
 			nick.settings.mainMessageHeight = $(window).height() / 2;
 			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight*2 + "px").css('fontSize', nick.settings.mainMessageHeight);
 		});
-		
-	},
-	
-	stripContent : [
-		// first and last sections are special cases.
-		{
-			sectionName : 1, 
-			headline : "I design websites", 
-			callout : "Because blah",
-			mainText : "This is the main text",
-			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
-		
-		},
-		{
-			sectionName : 2, 
-			headline : "I used to design for print", 
-			callout : "This is where I learnt to tell stories.",
-			mainText : "This is the main text",
-			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
-		
-		},
-		{
-			sectionName : 3, 
-			headline : "I can code what I design.", 
-			callout : "Because I want to know every detail is perfect.",
-			mainText : "This is the main text",
-			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
-		
-		} // first and last sections are special cases.
-	]
+	}
 };
 
 $(document).ready(function() { 
