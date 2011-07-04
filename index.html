@@ -25,100 +25,13 @@
 		<article class="page" id="container-liner">
 
 			<section id="section-0" class="division division-empty horizontal-carousel-wrapper waypoint-active">
-			
 				<div class="horizontal-carousel">
 					<h2 id="mainMessage" class="main-message"><span>There</span></h2>
 				</div>
-
-			</section>
-		
-			<section id="section-1" class="body division division-future">
-
-				<h1 class="static-title static-title-obscured"><span class="static-title-liner">I design interactions.</span></h1>
-			
-				<figure class="horizontal-carousel horizontal-carousel-obscured">
-				
-					<ul id="slider1" class="horizontal-carousel-slider">
-						<li class="horizontal-carousel-slide"><img src="img/work/CUNY.jpg" alt="CUNY" width="800" height="600" /> &nbsp;</li>			
-						<li class="horizontal-carousel-slide"><img src="img/work/CUNY.jpg" alt="CUNY" width="800" height="600" /> &nbsp;</li>			
-					</ul>
-
-					<ul class="horizontal-carousel-controls">
-						<li><a href="#slider1" class="horizontal-carousel-control horizontal-carousel-controls-next ir main-sprite">Next</a></li>
-						<li><a href="#slider1" class="horizontal-carousel-control horizontal-carousel-controls-prev ir main-sprite">Prev</a></li>
-					</ul>
-
-				</figure>
-				
-				<div class="col">
-
-					<div class="figcaption-liner">
-						<p><strong>Because blah blah blah blah sfhasdlf sda dsdfadf.</strong> Bacon ipsum dolor sit amet 
-						culpa officia meatball irure, ut sirloin excepteur pastrami rump in non duis mollit fatback jowl. 
-						Sunt sint fugiat beef ribs. Adipisicing ground round dolore minim ex, pariatur ullamco. Est pig in, 
-						drumstick chicken excepteur sunt reprehenderit. Cow ham hock pancetta cupidatat, elit turkey shoulder 
-						eu. Sint headcheese velit, elit ham non pork loin ground round eiusmod beef cupidatat eu excepteur. 
-						Incididunt jerky duis, venison tempor short loin ham hock.</p>
-					</div>
-
-				</div>
-				
-			</section>
-	
-			<section id="section-2" class="body division division-future">
-			
-				<h1 class="static-title"><span class="static-title-liner"> I used to design for print</span></h1>
-				<div class="col">
-					<div class="figcaption-liner  figcaption-liner-bottom">
-						<p><strong>This is where I learnt to tell stories.</strong> Bacon ipsum dolor sit amet culpa officia 
-						meatball irure, ut sirloin excepteur pastrami rump in non duis mollit fatback jowl. Sunt sint fugiat 
-						beef ribs. Adipisicing ground round dolore minim ex, pariatur ullamco. Est pig in, drumstick chicken 
-						excepteur sunt reprehenderit. Cow ham hock pancetta cupidatat, elit turkey shoulder eu. Sint headcheese 
-						velit, elit ham non pork loin ground round eiusmod beef cupidatat eu excepteur. Incididunt jerky duis, 
-						venison tempor short loin ham hock.</p>
-					</div>
-				</div>
-		
-				<figure class="horizontal-carousel">
-					<ul id="slider2" class="horizontal-carousel-slider">
-						<li class="horizontal-carousel-slide"><img src="img/work/Gerhard-00.jpg" alt="Gerhard-00" width="800" height="600" /> &nbsp;</li>			
-						<li class="horizontal-carousel-slide"><img src="img/work/Gerhard-00.jpg" alt="Gerhard-00" width="800" height="600" /> &nbsp;</li>			
-					</ul>
-					<ul class="horizontal-carousel-controls">
-						<li><a href="#slider2" class="horizontal-carousel-control horizontal-carousel-controls-next ir main-sprite">Next</a></li>
-						<li><a href="#slider2" class="horizontal-carousel-control horizontal-carousel-controls-prev ir main-sprite">Prev</a></li>
-					</ul>
-		
-				</figure>
-
-			</section>
-	
-	
-			<section id="section-3" class="body division division-future">
-			
-				<h1 class="static-title"><span class="static-title-liner"> I can code what I design.</span></h1>
-		
-				<figure class="horizontal-carousel">
-					<img src="img/work/lineLength.jpg" alt="lineLength" width="800" height="600" />
-				</figure>
-				<div class="col">
-					<div class="figcaption-liner">
-						<p><strong>Because I want to know every detail is perfect.</strong> Bacon ipsum dolor sit amet culpa 
-						officia meatball irure, ut sirloin excepteur pastrami rump in non duis mollit fatback jowl. Sunt sint
-						 fugiat beef ribs. Adipisicing ground round dolore minim ex, pariatur ullamco. Est pig in, drumstick 
-						 chicken excepteur sunt reprehenderit. Cow ham hock pancetta cupidatat, elit turkey shoulder eu. Sint 
-						 headcheese velit, elit ham non pork loin ground round eiusmod beef cupidatat eu excepteur. Incididunt 
-						 jerky duis, venison tempor short loin ham hock.
-						</p>
-					</div>
-				</div>
-				
 			</section>
 			
-			<section id="section-4" class="body division division-future">
-			
+			<section id="section-last" class="body division division-future">
 				<h1 class="static-title"><span class="static-title-liner">Please say hello</span></h1>
-		
 				<div class="col">
 					<div class="figcaption-liner">
 						<p><strong class="big">I'd love to <br />meet you.</strong> <br />Get in touch by sending me an <script type="text/javascript">
@@ -211,6 +124,27 @@
   <script src="js/script.js"></script>
   <!-- end scripts-->
 
+	<script id="sectionTmpl" type="text/x-jquery-tmpl"> 
+		<section id="section-${sectionName}" class="body division division-future">
+			<h1 class="static-title static-title-obscured"><span class="static-title-liner">${headline}</span></h1>
+			<figure class="horizontal-carousel horizontal-carousel-obscured">
+				<ul id="slider${sectionName}" class="horizontal-carousel-slider">
+					{{each images}}
+					<li class="horizontal-carousel-slide"><img src="${$value}" /> &nbsp;</li>
+					{{/each}}
+				</ul>
+				<ul class="horizontal-carousel-controls">
+					<li><a href="#slider${sectionName}" class="horizontal-carousel-control horizontal-carousel-controls-next ir main-sprite">Next</a></li>
+					<li><a href="#slider${sectionName}" class="horizontal-carousel-control horizontal-carousel-controls-prev ir main-sprite">Prev</a></li>
+				</ul>
+			</figure>
+			<div class="col">
+				<div class="figcaption-liner">
+					<p><strong{{if calloutModifier}} class="${calloutModifier}"{{/if}}>${callout}</strong> ${mainText}</p>
+				</div>
+			</div>
+		</section>	
+	</script> 
 
   <!--[if lt IE 7 ]>
     <script src="js/libs/dd_belatedpng.js"></script>
