@@ -659,12 +659,23 @@ window.log = function(){
 	
 	sch.prototype.lockOffElement = function ($element) {
 
-		var s = this.settings;
-		
-		$element.css('height', s.smallestHeight + "px");
-		
-		$element.css('font-size', s.fontSize + "px").css('line-height', s.smallestHeight + "px");
-		
+		var s = this.settings,
+			$newElement = $element.clone( true );
+		// doing dom changes to an off line element saves reflows
+		$newElement
+			.css('height', s.smallestHeight + "px")
+			.css('font-size', s.fontSize + "px")
+			.css('line-height', s.smallestHeight + "px")
+			.find('h1') // this seems to be required in OS, I don't like it either.
+			.css('height', s.smallestHeight + "px")
+			.css('font-size', s.fontSize + "px")
+			.css('line-height', s.smallestHeight + "px");
+			
+		if (s.$header === $element) { // TODO: is there a need for a distinction between the header, and tracking elements?
+			this.settings.$header = $newElement;
+		}
+		$element.replaceWith($newElement);
+
 		this.settings.inHeaderLockedOff = true;	
 		
 		if (typeof(this.callbacks.lockOffElement) == "function") {
