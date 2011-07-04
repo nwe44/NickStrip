@@ -37,7 +37,7 @@ nick = {
 				})
 				.parent()
 				.parent()
-				.append($myController);
+				.prepend($myController);
 				
 
 
