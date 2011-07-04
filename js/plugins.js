@@ -598,7 +598,7 @@ window.log = function(){
 		var s = this.settings,
 			that = this;
 
-		if (s.$header.height() > s.smallestHeight || that.getScrollPosition() < s.winHeight - 200) {
+		if (s.$header.height() > s.smallestHeight && that.getScrollPosition() < s.winHeight - 200 || that.getScrollPosition() < s.winHeight - 200) {
 
 			// resize the header
 			that.resizeElement(s.$header);
