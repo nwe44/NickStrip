@@ -8,19 +8,20 @@ nick = {
 	},
 	// universal, device independent behaviours
 	behaviours : function(){   	
+
 		$('body').removeClass('loading');
 		
-		$( "#sectionTmpl" ).tmpl( nick.stripContent ).insertAfter( "#section-0" );
-		
+		$( "#sectionTmpl" ).tmpl( nick.stripContent ).insertAfter( "#section-0" );	
+
 		// slideshows
-		var horizontalSlideController = {};
 		$('.horizontal-carousel').carousel({
 			slider: '.horizontal-carousel-slider',
 			slide: '.horizontal-carousel-slide',
+			pagination: true,
 			nextSlide: '.horizontal-carousel-controls-next',
 			prevSlide: '.horizontal-carousel-controls-prev',
 			speed: 300 // ms.
-		}).each(function () { // build the pager // TODO: group these DOM changes to reduce reflows
+		}).each(function () { // build the pager 
 				var $myController = $('<ul/>', {
 						className: 'horizontal-carousel-pager'
 					});
@@ -44,15 +45,16 @@ nick = {
 		});
 		
 		// size the main message
-		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight*2 + "px").css('fontSize', nick.settings.mainMessageHeight);
+		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * 2.5 + "px").css('fontSize', nick.settings.mainMessageHeight);
 		$(window).resize(function () {
-			nick.settings.mainMessageHeight = $(window).height() / 2;
-			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight*2 + "px").css('fontSize', nick.settings.mainMessageHeight);
+			nick.settings.mainMessageHeight = $(window).height() / 2.5;
+			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * 2.5 + "px").css('fontSize', nick.settings.mainMessageHeight);
 		});
 	}
 };
 
 $(document).ready(function() { 
+
 	nick.behaviours();
 	yepnope([{
 		test: Modernizr.touch,
@@ -61,7 +63,7 @@ $(document).ready(function() {
 		callback: function (url, result, key) {
 			if(result){
 				if(url === "js/mylibs/touchHelpers.js"){
-		   		nick.touchBehaviours();			
+			   		nick.touchBehaviours();			
 				}
 			}else{
 			   nick.desktopBehaviours();			   

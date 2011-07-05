@@ -216,6 +216,10 @@ body,
 	overflow: hidden;
 	position: relative;
 }
+.head,
+.main-title{
+	overflow: visible !important;
+}
 .no-touch .division{
 	margin-bottom: 100%;
 }
@@ -226,9 +230,13 @@ body,
 .touch .division,
 .touch .head,
 .touch .main-title{
- 	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1); */
+ 	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1); 
 }
-
+.touch .touch-div{
+	height: 100%;
+	float: left;
+	clear: both;
+}
 .main-title{
 	position: absolute;
 	font-family: "Fedra Sans Display 1 Thin Condensed";
@@ -246,6 +254,7 @@ body,
 	margin: 0;
 	padding: 0 0 0 0.5em;
 	width: 3em;
+	height: 100%;
 	text-align: left;
 	color: #EF4136;
 	-webkit-transition: padding 0.3s linear;
@@ -273,13 +282,6 @@ body,
 }
 .head-top{
 	z-index: 999999;
-}
-.head-top h1{
-	padding: 0 0 0 0.5em;
-	font-size: 44px;
-}
-.no-touch .head-top h1{
-	opacity: 1;
 }
 .main-sprite{
 	background-color: transparent;
@@ -344,7 +346,9 @@ section{
 .division-empty{
 	background: transparent;
 }
-
+.touch .division-empty{
+	height: 12.5%
+}
 .static-title{
 	position: fixed;
 	top:0px;
@@ -352,7 +356,7 @@ section{
 	opacity: 1;
 	left: 2.5em;
 	font-size: 44px;
-
+	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
 	color: #444444;
 	line-height: 100px;
 	height: 100px;
@@ -361,9 +365,11 @@ section{
 	z-index: 99;
 
 }
+/*
 .no-touch .static-title{
-	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
+	
 }
+*/
 .static-title span{
 	display: block;
 	-webkit-transition: all 0.3s linear;
@@ -397,7 +403,7 @@ section{
 }
 
 
-/* .col (extends figcaption)*/
+/* .col (extends div)*/
 .col{
 	position: absolute;
 	width: 100%;
@@ -411,7 +417,10 @@ section{
 	font-style: normal;
 	font-weight: normal;
 	font-stretch: normal;
-
+}
+.touch .col{
+	height: 50%;
+	padding: 0;
 }
 .figcaption-liner{
 	position: absolute;
@@ -443,7 +452,7 @@ li{
 	line-height: 1.5em;
 }
 .big{
-	font-size: 600%;
+	font-size: 400%;
 	line-height: 1em;
 	display: block;
 	margin-bottom: 0.05em;
@@ -455,6 +464,15 @@ li{
 	z-index: 1;
 	height: 90%;
 	width: 100%;
+}
+.touch .horizontal-carousel{
+	margin-top: 50%;
+	height: 50%;
+	position: absolute;
+}
+.touch .division-empty .horizontal-carousel{
+	margin-top: 0;
+	height: 100%;
 }
 .no-touch .horizontal-carousel{
 	position: fixed;
@@ -498,6 +516,7 @@ li{
 .horizontal-carousel-slide{
 	background-size: cover;
 	background-position: center center;
+	background-repeat: no-repeat;
 }
 .horizontal-carousel-pager,
 .horizontal-carousel-controls{
@@ -542,8 +561,9 @@ li{
 	background-position: -64px 0 ;
 }
 .horizontal-carousel-pager{
-	bottom: 0;
+	bottom: 10px;
 	text-align: center;
+	z-index: 99;
 }
 .horizontal-carousel-pager-item{
 	display: inline-block;
@@ -601,7 +621,7 @@ li{
 
 
 .touch #container-liner{
-	height: 400%;
+	height: 1000%;
 }
 
 .touch .head{
@@ -613,7 +633,7 @@ li{
 
 
 .touch .division{
-	height: 25%;
+	height: 20%;
 }
 .touch .head .division{
 	height: 100%;

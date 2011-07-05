@@ -590,7 +590,7 @@ window.log = function(){
 		prev_y : 0
 		
 	};
-	sch.prototype.getScrollPosition = function (){
+	sch.prototype.getScrollPosition = function () {
 		return $(window).scrollTop();
 	};
 	sch.prototype.assessHeaderCondition = function () {
@@ -607,7 +607,7 @@ window.log = function(){
 			for (var i = 0, numberOfExtras = that.extraElements.length; i < numberOfExtras; i += 1){
 				that.resizeElement($(that.extraElements[i]));
 			}
-			 if (s.inHeaderLockedOff){
+			 if (s.inHeaderLockedOff) {
 
 				// remove the flag locking off the header
 				this.settings.inHeaderLockedOff = false;
@@ -618,11 +618,10 @@ window.log = function(){
 			 }
 
 
-		}else if (! s.inHeaderLockedOff){
-			console.log('locking off header');
-			// we only need to lock everything off if it isn't already locked off.
+		}else if (! s.inHeaderLockedOff) { // we only need to lock everything off if it isn't already locked off.
+			
 			that.lockOffElement(s.$header);			
-			for (var i = 0, numberOfExtras = that.extraElements.length; i < numberOfExtras; i += 1){
+			for (var i = 0, numberOfExtras = that.extraElements.length; i < numberOfExtras; i += 1) {
 				that.lockOffElement($(that.extraElements[i]));
 			}
 		}
@@ -716,7 +715,7 @@ window.log = function(){
 
 			// doing dom changes to an off line element saves reflows
 			$newHeaderTitle
-				.css('font-size', $newHeaderHeight/4 + "px")
+				.css('font-size', parseInt($newHeaderHeight / 2.5, 10) + "px")
 				.css('line-height', $newHeaderHeight + "px");
 			s.$header.css('height', percentage + "%");
 			s.$header.find('h1').replaceWith($newHeaderTitle);
@@ -730,7 +729,7 @@ window.log = function(){
 		//setup the settings
 		this.settings.$header = options.header || $('header');
 		this.settings.smallestHeight = options.smallestHeight || 100;
-		this.settings.fontSize = options.fontSize || 24;
+		this.settings.fontSize = options.fontSize || 44;
 		
 		this.settings.referencePointSelector = options.referencePointSelector || '#container-liner';
 
@@ -757,7 +756,7 @@ window.log = function(){
 	tsch.prototype.onScrollEndLoop = function(that){
 
 			var heightBeforeChecking = that.settings.$header.height();
-
+			
 			that.assessHeaderCondition();
 
 			if(heightBeforeChecking != that.settings.$header.height() ){
@@ -768,7 +767,7 @@ window.log = function(){
 		var that = this;
 		// create a loop to discover if the header has reached it's destination size yet.
 		// if the size doesn't change on checking, then it has.
-		this.timer = setTimeout(function(){that.onScrollEndLoop(that)}, 10);
+		this.timer = setTimeout(function(){that.onScrollEndLoop(that)}, 100);
 		if (typeof(this.callbacks.onScrollEnd) == "function") {
 			this.callbacks.onScrollEnd(this);
 		}	

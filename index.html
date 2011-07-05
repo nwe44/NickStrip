@@ -24,15 +24,15 @@
 	<div id="container">
 		<article class="page" id="container-liner">
 
-			<section id="section-0" class="division division-empty horizontal-carousel-wrapper waypoint-active">
+			<section id="section-0" class="division division-empty horizontal-carousel-wrapper waypoint-active touch-div">
 				<div class="horizontal-carousel">
 					<h2 id="mainMessage" class="main-message"><span>There</span></h2>
 				</div>
 			</section>
 			
-			<section id="section-last" class="body division division-future">
+			<section id="section-last" class="division division-future">
 				<h1 class="static-title"><span class="static-title-liner">Please say hello</span></h1>
-				<div class="col">
+				<div class="col touch-div">
 					<div class="figcaption-liner">
 						<p><strong class="big">I'd love to <br />meet you.</strong> <br />Get in touch by sending me an <script type="text/javascript">
 						//<![CDATA[
@@ -142,7 +142,7 @@
 			headline : "I used to design for print", 
 			callout : "This is where I learnt to tell stories.",
 			mainText : "This is the main text",
-			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
+			images : ['img/work/lineLength.jpg']
 		
 		},
 		{
@@ -156,11 +156,16 @@
 	]
 	</script>
 	<script id="sectionTmpl" type="text/x-jquery-tmpl"> 
-		<section id="section-${sectionName}" class="body division division-future">
+		<section id="section-${sectionName}" class="division division-future">
 			<h1 class="static-title{{if titleObscured}} static-title-obscured{{/if}} ">
 				<span class="static-title-liner">${headline}</span>
 			</h1>
-			<figure class="horizontal-carousel horizontal-carousel-obscured">
+			<div class="col touch-div">
+				<div class="figcaption-liner">
+					<p><strong{{if calloutModifier}} class="${calloutModifier}"{{/if}}>${callout}</strong> ${mainText}</p>
+				</div>
+			</div>
+			<figure class="horizontal-carousel horizontal-carousel-obscured touch-div">
 				<ul id="slider${sectionName}" class="horizontal-carousel-slider">
 					{{each images}}
 					<li class="horizontal-carousel-slide"><img src="${$value}" /> &nbsp;</li>
@@ -171,13 +176,9 @@
 					<li><a href="#slider${sectionName}" class="horizontal-carousel-control horizontal-carousel-controls-prev ir main-sprite">Prev</a></li>
 				</ul>
 			</figure>
-			<div class="col">
-				<div class="figcaption-liner">
-					<p><strong{{if calloutModifier}} class="${calloutModifier}"{{/if}}>${callout}</strong> ${mainText}</p>
-				</div>
-			</div>
 		</section>	
 	</script> 
+
 
   <!--[if lt IE 7 ]>
     <script src="js/libs/dd_belatedpng.js"></script>
