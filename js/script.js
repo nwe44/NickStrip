@@ -4,7 +4,7 @@
 var nick = nick || {};
 nick = {
 	settings : {
-		mainMessageHeight : $(window).height() / 2
+		mainMessageHeight : $(window).height() / 2.5
 	},
 	// universal, device independent behaviours
 	behaviours : function(){   	
