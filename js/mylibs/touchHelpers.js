@@ -147,19 +147,15 @@ MBP.autogrow = function (element, lh) {
 
 nick.touchBehaviours = function(){
 	MBP.hideUrlBar();
+	
 	var myHeader = new scrollableHeader();
 	
 	// setting up the horizontal carousels
-	myHeader.sections = document.querySelectorAll('.division');
+	myHeader.sections = document.querySelectorAll('.touch-div');
 	
 	myHeader.init({
 		callbacks : {
 			lockOffElement : function () {
-				$("#mainMessage")
-					.css('height', '100px')
-					.addClass('main-message-hidden')
-					.parent()
-					.addClass('division-past');
 				$('.head').addClass('head-top');
 				$('#section-1 .static-title').removeClass('static-title-obscured');
 			},
@@ -174,30 +170,35 @@ nick.touchBehaviours = function(){
 				$('#section-1 .static-title').addClass('static-title-obscured');
 			},
 			onScrollEnd : function (that) {
-
+				
 				if (that.section_flip.currPageY != that.settings.prev_section) {
-					var oldItem = that.sections[that.settings.prev_section].children[0],
-						newItem = that.sections[that.section_flip.currPageY].children[0];
-					var oldDivision = (that.settings.prev_section > that.section_flip.currPageY) ? 'division-future' : 'division-past';
-					
-					
-					// something weird is happening here on multiple scrolls.
-					$('.waypoint-active').removeClass('waypoint-active').addClass(oldDivision);
-					$(newItem).parent().addClass('waypoint-active').removeClass('division-future division-past');
-					console.log($(newItem).attr('class'));
 
-					//oldItem.style.webkitTransitionDuration = '0';
-					//oldItem.style.webkitTransform = 'translate3d(' + nick.scroll.settings.prev_x + 'px, ' + nick.scroll.settings.prev_y + 'px, 0)';
+					var currentSection = (that.section_flip.currPageY % 2 == 0) ? that.section_flip.currPageY - 1 : that.section_flip.currPageY,
+						oldItem = that.sections[that.settings.prev_section].children[0],
+						newItem = that.sections[that.section_flip.currPageY].children[0],
+						oldDivision = (that.settings.prev_section > that.section_flip.currPageY) ? 'division-future' : 'division-past';
+
+					// in touch land we have two sub sections for each section
+					// so only change things if it's odd (begingin of a section) or if we're going back up		
+					if (
+							that.section_flip.currPageY % 2 != 0 && that.section_flip.currPageY > that.settings.prev_section // going down
+						||	that.section_flip.currPageY % 2 != 0 && that.section_flip.currPageY < that.settings.prev_section // going up
+						) {
+						$('.waypoint-active').removeClass('waypoint-active').addClass(oldDivision);
+						
+						$(newItem) // should be able to consolodate these changed to reduce reflows.
 /*
-		
-					this.horizontal_scroll = new iScroll( this.sections[this.section_flip.currPageY], {
-						hScrollbar: false,
-						vScrollbar: false,
-						snap:true
-					});
+							.addClass('waypoint-active')
+							.removeClass('division-future division-past')
 */
-					//$(nick.scroll.settings.horizontal_scroll.scroller).css("-webkit-transform",'100 100').css('border', '1px solid blue').css('-webkit-transform-origin','100 100');
-					that.settings.prev_section = that.section_flip.currPageY;
+							.parent()
+							.parent()
+							.addClass('waypoint-active')
+							.removeClass('division-future division-past');
+					}
+					
+
+/* 					that.settings.prev_section = that.section_flip.currPageY; */
 				}
 
 			

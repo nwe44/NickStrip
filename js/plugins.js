@@ -742,7 +742,7 @@ window.log = function(){
 		this.section_flip = new iScroll('container', {
 			hScrollbar: false,
 			vScrollbar: true,
-			snap: 'section',
+			snap: '.touch-div',
 			momentum: false,
 			onScrollMove: function(event){ that.assessHeaderCondition(); },
 			onScrollEnd: function(event){that.onScrollEnd();}
