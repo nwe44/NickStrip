@@ -647,10 +647,15 @@ window.log = function(){
 		var s = this.settings,
 			percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / s.winHeight )) : 100;
 		
-		$element.css('height', percentage + "%");
-		
-		$element.css('font-size', $element.height() / 2 + "px").css('line-height', $element.height() + "px");
-
+		$element // doing dom changes to an off line seems to actually be counter productive here.
+			.css('height', percentage + "%")
+			.css('font-size', $element.height() / 2 + "px")
+			.css('line-height', $element.height() + "px")
+			.find('h1') // this seems to be required in OS, I don't like it either.
+			.css('height', "100%")
+			.css('font-size', "100%")
+			.css('line-height', "100%");
+			
 		if (typeof(this.callbacks.resizeHeader) == "function") {
 			this.callbacks.resizeHeader();
 		}
