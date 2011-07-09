@@ -576,6 +576,7 @@ window.log = function(){
 		inHeaderLockedOff: false,
 		fontSize : null,
 		two: 'other',
+		scaleFactor: null,
 		
 		// non-fixed positioning settings
 		referencePointSelector : null, //'#container-liner'
@@ -597,7 +598,7 @@ window.log = function(){
 
 		var s = this.settings,
 			that = this;
-
+		
 		if (s.$header.height() > s.smallestHeight && that.getScrollPosition() < s.winHeight - 200 || that.getScrollPosition() < s.winHeight - 200) {
 
 			// resize the header
@@ -617,9 +618,8 @@ window.log = function(){
 				}		 
 			 }
 
+		} else if (! s.inHeaderLockedOff) { // we only need to lock everything off if it isn't already locked off.
 
-		}else if (! s.inHeaderLockedOff) { // we only need to lock everything off if it isn't already locked off.
-			
 			that.lockOffElement(s.$header);			
 			for (var i = 0, numberOfExtras = that.extraElements.length; i < numberOfExtras; i += 1) {
 				that.lockOffElement($(that.extraElements[i]));
@@ -646,10 +646,10 @@ window.log = function(){
 	sch.prototype.resizeElement = function ($element) {
 		var s = this.settings,
 			percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / s.winHeight )) : 100;
-		
+
 		$element // doing dom changes to an off line seems to actually be counter productive here.
 			.css('height', percentage + "%")
-			.css('font-size', $element.height() / 2 + "px")
+			.css('font-size', $element.height() / s.scaleFactor + "px")
 			.css('line-height', $element.height() + "px")
 			.find('h1') // this seems to be required in OS, I don't like it either.
 			.css('height', "100%")
@@ -690,11 +690,13 @@ window.log = function(){
 	sch.prototype.init = function (options) {
 
 		//setup the settings
+		// perhaps I could just use $.extend here
 		this.settings.$header = options.header || $('header');
 		this.settings.smallestHeight = options.smallestHeight || 100;
 		this.settings.fontSize = options.fontSize || 44;
 		this.callbacks = options.callbacks || {};
 		this.extraElements = options.extraElements || [];
+		this.settings.scaleFactor = options.scaleFactor || 2;
 		var that = this;
 		
 		//bind the resize event
@@ -710,7 +712,7 @@ window.log = function(){
 	// touch events
 	tsch.prototype = new sch();
 	
-	tsch.prototype.resizeElement = function ($element) {
+	tsch.prototype.resizeElement = function () {
 		var s = this.settings,
 			that = this,
 			myScrollPosition = that.getScrollPosition();
@@ -720,7 +722,7 @@ window.log = function(){
 
 			// doing dom changes to an off line element saves reflows
 			$newHeaderTitle
-				.css('font-size', parseInt($newHeaderHeight / 2.5, 10) + "px")
+				.css('font-size', parseInt($newHeaderHeight / s.scaleFactor, 10) + "px")
 				.css('line-height', $newHeaderHeight + "px");
 			s.$header.css('height', percentage + "%");
 			s.$header.find('h1').replaceWith($newHeaderTitle);
@@ -735,6 +737,7 @@ window.log = function(){
 		this.settings.$header = options.header || $('header');
 		this.settings.smallestHeight = options.smallestHeight || 100;
 		this.settings.fontSize = options.fontSize || 44;
+		this.settings.scaleFactor = options.scaleFactor || 2;
 		
 		this.settings.referencePointSelector = options.referencePointSelector || '#container-liner';
 
