@@ -148,8 +148,8 @@ MBP.autogrow = function (element, lh) {
 nick.touchBehaviours = function(){
 	MBP.hideUrlBar();
 	
-	
 	nick.myHeader = new scrollableHeader();
+
 	// setting up the horizontal carousels
 	nick.myHeader.sections = document.querySelectorAll('.touch-div');
 	
@@ -188,21 +188,12 @@ nick.touchBehaviours = function(){
 						$('.waypoint-active').removeClass('waypoint-active').addClass(oldDivision);
 						
 						$(newItem) // should be able to consolodate these changed to reduce reflows.
-/*
-							.addClass('waypoint-active')
-							.removeClass('division-future division-past')
-*/
 							.parent()
 							.parent()
 							.addClass('waypoint-active')
 							.removeClass('division-future division-past');
 					}
-					
-
-/* 					that.settings.prev_section = that.section_flip.currPageY; */
 				}
-
-			
 			}
 		}
 	});

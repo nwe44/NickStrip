@@ -7,9 +7,9 @@
 	<meta charset="utf-8">
 	<title>Nicholas Evans</title>
 	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="author" content="Nicholas Evans">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
 
 	<!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 	<link rel="shortcut icon" href="/favicon.ico">
@@ -22,19 +22,32 @@
 <body class="loading">
 
 	<div id="container">
+	
 		<article class="page" id="container-liner">
+
+				<h3 class="visuallyhidden">I design websites for people</h3>
+				<p class="visuallyhidden"><strong>Because the web should be simpler, even if that makes design difficult.</strong>
+				A great example is the website I worked on at C&amp;G Partners for the City University of New York Graduate Center. This wasn't just a university, this was an institution trying to be known as a cultural center hosting public seminars, concerts, courses and more. The front page needed to convey this multiplicity from the start, and the rest of the website needed to help you navigate it. The front page became a sliding bookshelf, explaining each facet of the site as the user investigated, and inside we created dashboards for each area of interest.</p>
+				<h3 class="visuallyhidden">I started out designing for print</h3>
+				<p class="visuallyhidden"><strong>This is where I learnt to tell stories.</strong>
+				Working on branding, books and brochures taught me how to communicate a message, before I ever learnt how to communicate an interaction. Working for over three years for ex-Pentagram man Thomas Manss added a dash of German ordnung to what I'd learnt doing a Masters at the Royal College of Art. I discovered how to make the case for buying $10,000 speakers as well as how to craft a Red Dot award winning monograph.</p> 
+				<h3 class="visuallyhidden">I can code what I design.</h3>
+				<p class="visuallyhidden"><strong> Because I'm not just designing for the screen.</strong>
+				I'm designing for Safari Reader, Instapaper, Flipboard, and yes, Google. That means looking under the hood as well as designing something that's feasible from the start. Moreover, I won't code better than your senior developer, but I can talk in his language.</p>
 
 			<section id="section-0" class="division division-empty horizontal-carousel-wrapper waypoint-active touch-div">
 				<div class="horizontal-carousel">
-					<h2 id="mainMessage" class="main-message"><span>There</span></h2>
+					<h2 id="mainMessage" class="main-message"><span class="visuallyhidden">Nick</span><span>Evans</span></h2>
 				</div>
 			</section>
+
+
 			
 			<section id="section-last" class="division division-future">
-				<h1 class="static-title"><span class="static-title-liner">Please say hello</span></h1>
+				<h1 class="static-title"><span class="static-title-liner">would love to hear from you...</span></h1>
 				<div class="col touch-div">
 					<div class="figcaption-liner">
-						<p><strong class="big">I'd love to <br />meet you.</strong> <br />Get in touch by sending me an <script type="text/javascript">
+						<p><strong class="big">Get in touch,<br /> send me an <script type="text/javascript">
 						//<![CDATA[
 						
 						function hiveware_enkoder(){var i,j,x,y,x=
@@ -56,7 +69,7 @@
 						
 						//]]>
 						</script>
-						
+						</strong>
 						
 						<br /><br />
 						</p>
@@ -80,15 +93,17 @@
 								<span class="region">New York</span>
 								<span class="country-name">USA</span>							
 							</div>
-							<p>Or give me a call <span class="tel">(347) 570 3575</span></p>
+							<p>Or give me a call <span class="tel">(347) 570 3575</span><br /><br /></p>
 						</address>
 						
-						<p class="small">I understand if you're still not convinced. Dig a little deeper at the following,</p>
+						<p class="feint">Dig a little deeper at the following,</p>
 						
-						<ul class="small">
-							<li><a href="http://github.com/nwe44" title="My git hub profile" target="_blank" rel="nofollow">My gitHub profile</a></li>
-							<li><a href="http://www.linkedin.com/in/nwe44" title="My linkedIn profile" target="_blank" rel="nofollow">My linkedIn profile</a></li>
-							<li><a href="http://www.twitter.com/nwe44" title="Nick Evans on twitter" target="_blank" rel="nofollow">Follow me on twitter</a></li>
+						<ul class="feint">
+							<li>Read my resum&eacute; on <a href="http://www.linkedin.com/in/nwe44" title="My linkedIn profile" target="_blank" rel="nofollow">LinkedIn</a></li>
+							<li>See things that inspire me on my <a href="http://scrapbook.nick-evans.com" title="My scrapbook" target="_blank" >tumblog</a></li>
+							<li>Follow me on <a href="http://www.twitter.com/nwe44" title="Nick Evans on twitter" target="_blank" rel="nofollow">twitter</a></li>
+							<li>Read what I read on my <a href="http://delicious.com/nwe_44" title="My delicious" target="_blank" >delicious</a></li>
+							<li>Look at my code on <a href="http://github.com/nwe44" title="My git hub profile" target="_blank" rel="nofollow">Github</a></li>
 						</ul>
 						
 					</div>
@@ -101,7 +116,7 @@
 	
 	
 		<header id="main-header" class="head">
-			<section class="main-title"><h1>Hello</h1></section>
+			<section class="main-title"><h1>Nick</h1></section>
 		</header>
 	
 		<footer class="foot">
@@ -127,36 +142,78 @@
 	<script> 
 		// separation of concerns, content should be here.
 		nick.stripContent = [
+		// This is really being done as a kind of lazy loading
+		// later on this will be developed to be loaded by ajax.
 		// first and last sections are special cases.
 		{
 			sectionName : 1,
 			titleObscured : true,
-			headline : "I design websites", 
-			callout : "Because blah",
-			mainText : "This is the main text",
-			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
+			headline : "designs websites for people.", 
+			callout : "Because the web should be simpler, even if that makes design difficult.",
+			mainText : "A great example is the website I worked on at C&amp;G Partners for the City University of New York Graduate Center. This wasn't just a university, this was an institution trying to be known as a cultural center hosting public seminars, concerts, courses and more. The site needed to convey this complex mission from the start without overwhelming users as they delved deeper. The front page became a sliding bookshelf, explaining each facet of the site as the user investigated. Inside the site we created dashboards for each area of interest.",
+			images : [
+				{
+					src:'img/work/CUNY-01.jpg',
+					caption: "The frontpage uses a Kwicks style slider"
+				},
+				{
+					src:'img/work/CUNY-02.jpg',
+					caption: "The frontpage with a book open."
+				},
+				{
+					src:'img/work/CUNY-03.jpg',
+					caption: "The Areas of interest section is a dashboard to engage users with the GC's wide variety of activity."
+				},
+				{
+					src:'img/work/CUNY-04.jpg',
+					caption: ""
+				}
+			]
 		
 		},
 		{
 			sectionName : 2, 
-			headline : "I used to design for print", 
+			headline : "started out designing for print.", 
 			callout : "This is where I learnt to tell stories.",
-			mainText : "This is the main text",
-			images : ['img/work/lineLength.jpg']
-		
+			mainText : "Working on branding, books and brochures taught me how to communicate a message, before I ever learnt how to communicate an interaction. Working for over three years for ex-Pentagram man Thomas Manss added a dash of German ordnung to what I'd learnt doing a Masters at the Royal College of Art. I discovered how to make the case for buying $10,000 speakers as well as how to craft a Red Dot award winning monograph.",
+			images: [
+				{
+					src:'img/work/Gerhard-00.jpg',
+					caption: "A monograph designed at Thomas Manss &amp; Company for The National Portrait Gallery"
+				},
+				{
+					src:'img/work/Gerhard-01.jpg',
+					caption: "The frontspiece"
+				},
+				{
+					src:'img/work/Gerhard-02.jpg',
+					caption: ""
+				}
+			]
 		},
 		{
 			sectionName : 3, 
-			headline : "I can code what I design.", 
-			callout : "Because I want to know every detail is perfect.",
-			mainText : "This is the main text",
-			images : ['img/work/CUNY.jpg', 'img/work/lineLength.jpg']
+			headline : "can code what he designs.", 
+			callout : "Because I'm not just designing for the screen.",
+			mainText : "I'm designing for Safari Reader, Instapaper, Flipboard, and yes, Google. That means looking under the hood as well as designing something that's feasible from the start. Understanding the building blocks allows me to create design ideas I wouldn't otherwise have thought of, and prototype them in cases where drawings and photoshop mockups wouldn't do them justice. I won't code better than your senior developer, but I can talk in his language.",
+			images: [
+				{
+					src:'img/work/lineLength.jpg',
+					caption: "I made a tool to measure line lengths online",
+					url: "http://nwe44.github.com/Line-length/"
+				},
+				{
+					src:'img/github.jpg',
+					caption: "See what I'm up to on GitHub",
+					url: "http://www.github.com/nwe44"
+				}
+			]
 		
 		} // first and last sections are special cases.
 	]
 	</script>
 	<script id="sectionTmpl" type="text/x-jquery-tmpl"> 
-		<section id="section-${sectionName}" class="division division-future">
+		<aside id="section-${sectionName}" class="division division-future">
 			<h1 class="static-title{{if titleObscured}} static-title-obscured{{/if}} ">
 				<span class="static-title-liner">${headline}</span>
 			</h1>
@@ -165,18 +222,27 @@
 					<p><strong{{if calloutModifier}} class="${calloutModifier}"{{/if}}>${callout}</strong> ${mainText}</p>
 				</div>
 			</div>
-			<figure class="horizontal-carousel horizontal-carousel-obscured touch-div">
-				<ul id="slider${sectionName}" class="horizontal-carousel-slider">
+			<div class="horizontal-carousel horizontal-carousel-with-content horizontal-carousel-obscured touch-div slidewrap">
+				<ul id="slider${sectionName}" class="horizontal-carousel-slider slider">
 					{{each images}}
-					<li class="horizontal-carousel-slide"><img src="${$value}" /> &nbsp;</li>
+					<li id="slide${$index}" class="horizontal-carousel-slide">
+						<figure>
+							<img src="${$value.src}" />
+							<figcaption class="horizontal-carousel-slide-caption">
+								{{if $value.url}}<a href='$value.url' target='_blank'>{{/if}}
+									${$value.caption}
+								{{if $value.url}}</a>{{/if}}
+							</figcaption>
+						</figure> &nbsp;
+					</li>
 					{{/each}}
 				</ul>
 				<ul class="horizontal-carousel-controls">
 					<li><a href="#slider${sectionName}" class="horizontal-carousel-control horizontal-carousel-controls-next ir main-sprite">Next</a></li>
 					<li><a href="#slider${sectionName}" class="horizontal-carousel-control horizontal-carousel-controls-prev ir main-sprite">Prev</a></li>
 				</ul>
-			</figure>
-		</section>	
+			</div>
+		</aside>	
 	</script> 
 
 

@@ -4,24 +4,28 @@
 var nick = nick || {};
 nick = {
 	settings : {
-		mainMessageHeight : $(window).height() / 2
+		scaleFactor : ( Modernizr.touch) ? ((window.innerHeight > window.innerWidth) ? 4 : 2.5) : 2,
+		mainMessageHeight : null
 	},
 	// universal, device independent behaviours
 	behaviours : function(){   	
-
+		nick.settings.mainMessageHeight = parseFloat($(window).height() / this.settings.scaleFactor);
 		$('body').removeClass('loading');
 		
 		$( "#sectionTmpl" ).tmpl( nick.stripContent ).insertAfter( "#section-0" );	
 
 		// slideshows
-		$('.horizontal-carousel').carousel({
+		$('.horizontal-carousel-with-content').carousel({
 			slider: '.horizontal-carousel-slider',
 			slide: '.horizontal-carousel-slide',
 			pagination: true,
 			nextSlide: '.horizontal-carousel-controls-next',
 			prevSlide: '.horizontal-carousel-controls-prev',
 			speed: 300 // ms.
-		}).each(function () { // build the pager 
+		});
+		
+		/*
+.each(function () { // build the pager 
 				var $myController = $('<ul/>', {
 						className: 'horizontal-carousel-pager'
 					});
@@ -39,16 +43,15 @@ nick = {
 				.parent()
 				.parent()
 				.prepend($myController);
-				
-
 
 		});
-		
+*/
+
 		// size the main message
-		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * 2 + "px").css('fontSize', nick.settings.mainMessageHeight);
+		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * this.settings.scaleFactor + "px").css('fontSize', nick.settings.mainMessageHeight);
 		$(window).resize(function () {
-			nick.settings.mainMessageHeight = $(window).height() / 2;
-			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * 2 + "px").css('fontSize', nick.settings.mainMessageHeight);
+			nick.settings.mainMessageHeight = $(window).height() / nick.settings.scaleFactor;
+			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * nick.settings.scaleFactor + "px").css('fontSize', nick.settings.mainMessageHeight);
 		});
 	}
 };
@@ -82,7 +85,9 @@ $(document).ready(function() {
 	]);
     if (Modernizr.backgroundsize) { // this should not be necessary. Build for the best browsers, so make the markup right first
         $('.horizontal-carousel-slide img').each(function () {
-            $(this).parent().css('backgroundImage', "url(" + $(this).attr('src') + ')').end().remove();
+        	
+            $(this).parent().parent().css('backgroundImage', "url(" + $(this).attr('src') + ')');//.end().remove();
+            $(this).remove();
         });
     }
 });

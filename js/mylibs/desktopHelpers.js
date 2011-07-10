@@ -517,7 +517,7 @@ Support:
 
 // header scroll
 nick.desktopBehaviours = function(){
-
+	
 	// header
 	$.fn.waypoint.defaults.offset = "70%";
 	$('.division').each(function(){
