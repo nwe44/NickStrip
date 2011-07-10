@@ -341,10 +341,33 @@ section{
 	-webkit-transition: color 0.3s linear;
 	-moz-transition: color 0.3s linear;
 	-o-transition: color 0.3s linear;
+	transition: color 0.3s linear;
 	
 }
 .division-empty{
 	background: transparent;
+}
+.no-touch .division-empty{
+	background-color: transparent;
+	background-image: url(../img/arrow.png);
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+	background-size: auto auto;
+
+}
+.touch .head{
+	background-color: transparent;
+	background-image: url(../img/arrow.png);
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+	background-size: auto auto;
+	-webkit-transition: background-position 0.3s linear;
+	-moz-transition: background-position 0.3s linear;
+	-o-transition: background-position 0.3s linear;
+	transition: background-position 0.3s linear;
+}
+.touch .scroll-locked-off .head{
+	background-position: 50% -100px;
 }
 .touch .division-empty{
 	height: 12.5%
@@ -354,7 +377,7 @@ section{
 	top:0px;
 	overflow-y: hidden;
 	opacity: 1;
-	left: 2.5em;
+	left: 1.9em;
 	font-size: 44px;
 	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
 	color: #444444;
@@ -375,8 +398,8 @@ section{
 	-webkit-transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear;
 	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
 	background: transparent;
-	border-left: 2px solid #999999;
 	padding: 0 10px;
 	position: absolute;
 	font-family: "Fedra Sans Display 1 Thin Condensed";
@@ -411,7 +434,7 @@ section{
 	z-index: 9;
 	margin: 0 auto;
 	background: rgba(240,240,240,0.8);
-	line-height: 2em;
+	line-height: 1.25em;
 	padding:20px 0;
 	font-family: "Fedra Sans Display 1 Thin Condensed";
 	font-style: normal;
@@ -447,12 +470,14 @@ li{
 li{
 	padding-right: 0.5em;
 }
-.small{
-	font-size: 75%;
-	line-height: 1.5em;
+.feint{
+	color:#999;
+}
+.feint li{
+	display: block;
 }
 .big{
-	font-size: 400%;
+	font-size: 300%;
 	line-height: 1em;
 	display: block;
 	margin-bottom: 0.05em;
@@ -480,32 +505,28 @@ li{
 	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;
 	-o-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
 }
 .no-touch .division-past .horizontal-carousel{
 	top:0%;
 	margin-top: -100%;
 }
-/*
-.no-touch #section-1 .horizontal-carousel,
-.no-touch .horizontal-carousel-obscured{
-	position: absolute;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
+.horizontal-carousel-controls{
+	height: 80%;
+	display: block;
 }
-*/
 .horizontal-carousel,
 .horizontal-carousel-slider,
-.horizontal-carousel-slide,
-.horizontal-carousel-controls{
+.horizontal-carousel-slide{
 	height: 100%;
 	display: block;
+	-webkit-transform:translate3d(0,0,0) rotate(0) scale(1);
 }
 
 .horizontal-carousel-slider,
 .horizontal-carousel-slide,
-.horizontal-carousel-pager,
-.horizontal-carousel-pager-item,
+.carousel-tabs,
+.carousel-tabs li,
 .horizontal-carousel-controls,
 .horizontal-carousel-control{
 	list-style: none;
@@ -514,13 +535,19 @@ li{
 	margin: 0;
 }
 .horizontal-carousel-slide{
-	background-size: cover;
+	-webkit-background-size: contain;
+	-o-background-size: contain;
+	-moz-background-size: contain;
+	background-size: contain;
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-.horizontal-carousel-pager,
-.horizontal-carousel-controls{
+.no-touch .carousel-tabs{
 	opacity: 0;
+}
+.carousel-tabs,
+.horizontal-carousel-controls{
+
 	-webkit-transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear;
 	-o-transition: all 0.3s linear;
@@ -531,7 +558,7 @@ li{
 	top:0;
 }
 .no-touch .waypoint-active .horizontal-carousel,
-.waypoint-active .horizontal-carousel-pager,
+.waypoint-active .carousel-tabs,
 .waypoint-active  .horizontal-carousel-controls{
 	opacity: 1;
 }
@@ -543,7 +570,7 @@ li{
 	position: absolute;
 	top:50%;
 	width: 32px;
-	height: 32px;
+	height: 64px;
 }
 
 .horizontal-carousel-controls-next{
@@ -560,28 +587,57 @@ li{
 .no-touch .horizontal-carousel-controls-prev:hover{
 	background-position: -64px 0 ;
 }
-.horizontal-carousel-pager{
+.carousel-tabs{
 	bottom: 10px;
 	text-align: center;
 	z-index: 99;
 }
-.horizontal-carousel-pager-item{
+.carousel-tabs li{
 	display: inline-block;
 	width: 16px;
 	height: 16px;
+	margin: 0 2px;
 	position: relative;
 	-webkit-transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear;
 	-o-transition: all 0.3s linear;	
 }
-.horizontal-carousel-pager-item-link{
+.carousel-tabs li a{
 	position: absolute;
 	background-position: 0 0;
 	width: 16px;
 	height: 16px;
+	background-color: transparent;
+	background-image: url(../img/sprite.png);
+	display: block; 
+	text-indent: -999em; 
+	overflow: hidden; 
+	background-repeat: no-repeat; 
+	text-align: left; 
+	direction: ltr;
 }
-.horizontal-carousel-pager-item-link-active{
+.carousel-tabs .current a{
 	background-position: -16px 0;	
+}
+figure{
+	width: 100%;
+	height: 100%;
+}
+.horizontal-carousel-slide-caption{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 40px;
+	padding: 10px;
+	background: #e2e2e2;
+	
+    -moz-border-radius: 3px; 
+	-webkit-border-radius: 3px; 
+	border-radius: 3px; 
+	-moz-background-clip: padding; 
+	-webkit-background-clip: padding-box; 
+	background-clip: padding-box; 
+
 }
 /**
  * Non-semantic helper classes: please define your styles before this section.
@@ -650,7 +706,20 @@ li{
   /* Style adjustments for landscape mode goes here */
 
 }
-@media screen and (min-width:900px) and (max-width: 924px) {
+@media screen and (max-width: 768px) {
+	.figcaption-liner{
+		width: 90%;
+		left: 20px;
+		bottom:20px;
+		font-size: 280%;
+		line-height: 1.2em;
+	}
+	.big{
+		font-size: 200%;
+		margin-bottom: 0em;
+	}
+}
+@media screen and (min-width:769px) and (max-width: 924px) {
 	.col{
 	font-size: 174%;
 	}
@@ -659,14 +728,14 @@ li{
 
 	.horizontal-carousel img{
 		left: -100px;
-		position: relativel
+		position: relative;
 	}
 	.col{
 
 		font-size: 182%;
 	}
-	.figcaption-liner-bottom{
-		bottom: 15px;
+	.figcaption-liner{
+		bottom: 20px;
 	}
 }
 
@@ -692,11 +761,18 @@ li{
 }
 /* Grade-A Mobile Browsers (Opera Mobile, Mobile Safari, Android Chrome)
    consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
-@media screen and (max-device-width: 480px) {
+@media screen and (max-width: 480px) {
+	.figcaption-liner{
+		font-size: 140%;
+	}
+	.big{
+		font-size: 100%;
+		margin-bottom: 0em;
+	}
 
 
   /* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you: j.mp/textsizeadjust */
-  /* html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
+  html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } 
 }
 
 
