@@ -148,12 +148,13 @@ MBP.autogrow = function (element, lh) {
 nick.touchBehaviours = function(){
 	MBP.hideUrlBar();
 	
-	var myHeader = new scrollableHeader();
 	
+	nick.myHeader = new scrollableHeader();
 	// setting up the horizontal carousels
-	myHeader.sections = document.querySelectorAll('.touch-div');
+	nick.myHeader.sections = document.querySelectorAll('.touch-div');
 	
-	myHeader.init({
+	nick.myHeader.init({
+		scaleFactor: nick.settings.scaleFactor,
 		callbacks : {
 			lockOffElement : function () {
 				$('.head').addClass('head-top');
@@ -204,5 +205,12 @@ nick.touchBehaviours = function(){
 			
 			}
 		}
+	});
+	$(window).resize(function () {
+			nick.settings.scaleFactor = ((window.innerHeight > window.innerWidth) ? 4 : 2.5);
+			nick.myHeader.settings.scaleFactor = nick.settings.scaleFactor;
+			if(! nick.myHeader.settings.inHeaderLockedOff){
+				nick.myHeader.resizeElement();
+			}
 	});
 };

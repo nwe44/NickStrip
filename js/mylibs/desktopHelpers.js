@@ -542,6 +542,7 @@ nick.desktopBehaviours = function(){
 	var myHeader = new scrollableHeader();
 	
 	myHeader.init({
+		scaleFactor : nick.settings.scaleFactor,
 		callbacks : {
 			lockOffElement : function () {
 				$('.head').addClass('head-top');
