@@ -613,7 +613,7 @@ window.log = function(){
 				// remove the flag locking off the header
 				this.settings.inHeaderLockedOff = false;
 				$('body').removeClass('scroll-locked-off');
-				s.$header.parent().parent().removeClass('locked-off')
+				s.$header.parent().parent().removeClass('locked-off');
 				if (typeof(this.callbacks.onRemoveLockOff) == "function") {
 					this.callbacks.onRemoveLockOff();
 				}		 
@@ -716,7 +716,7 @@ window.log = function(){
 	tsch.prototype.resizeElement = function () {
 		var s = this.settings,
 			that = this,
-			myScrollPosition = that.getScrollPosition();
+			myScrollPosition = that.getScrollPosition(),
 			percentage = (myScrollPosition > 1) ? 100 - (100 * -((-myScrollPosition / s.winHeight ))) : 100,
 			$newHeaderHeight = s.$header.height(),
 			$newHeaderTitle = s.$header.find('h1').clone( true );
@@ -776,7 +776,7 @@ window.log = function(){
 		var that = this;
 		// create a loop to discover if the header has reached it's destination size yet.
 		// if the size doesn't change on checking, then it has.
-		this.timer = setTimeout(function(){that.onScrollEndLoop(that)}, 100);
+		this.timer = setTimeout(function(){that.onScrollEndLoop(that);}, 100);
 		if (typeof(this.callbacks.onScrollEnd) == "function") {
 			this.callbacks.onScrollEnd(this);
 		}	
@@ -827,7 +827,7 @@ window.log = function(){
 				});
 			},
 			snapBack : function($el, left) {
-				var currentPos = ( $el.attr('style') != undefined ) ? $el.attr('style').match(/margin\-left:(.*[0-9])/i) && parseInt(RegExp.$1) : 0,
+				var currentPos = ( $el.attr('style') !== undefined ) ? $el.attr('style').match(/margin\-left:(.*[0-9])/i) && parseInt(RegExp.$1) : 0,
 					leftmargin = (left === false) ? carousel.roundDown(currentPos) - 100 : carousel.roundDown(currentPos);
 
 				carousel.transitionSwap($el, true);
