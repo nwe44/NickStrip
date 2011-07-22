@@ -1,4 +1,6 @@
-
+/* 
+* Plugins
+*/
 // usage: log('inside coolFunc', this, arguments);
 // paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
 window.log = function(){
@@ -503,7 +505,9 @@ window.log = function(){
 
 
 
-/*! Copyright (c) 2010 Burin Asavesna (http://helloburin.com)
+/*! 
+ * CSS hook -- transitions
+ * Copyright (c) 2010 Burin Asavesna (http://helloburin.com)
  * Licensed under the MIT License (LICENSE.txt).
  */
 (function($) {
@@ -549,7 +553,11 @@ window.log = function(){
 
 })(jQuery);
 
-// header sizing module
+/*!
+* Experimental header scroller
+* Someday to be made more generic and opensourced
+* Author: Nick Evans 2011
+*/
 (function (window) {
 	var ua = navigator.userAgent.toLowerCase();
   isWebkit = !!ua.match(/applewebkit/i);

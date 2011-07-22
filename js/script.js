@@ -1,5 +1,6 @@
-/* Author: Nick Evans
-
+/*!
+ Device agnositc logic
+ Author: Nick Evans
 */
 var nick = nick || {};
 nick = {
@@ -23,29 +24,6 @@ nick = {
 			prevSlide: '.horizontal-carousel-controls-prev',
 			speed: 300 // ms.
 		});
-		
-		/*
-.each(function () { // build the pager 
-				var $myController = $('<ul/>', {
-						className: 'horizontal-carousel-pager'
-					});
-				$(this).find('.horizontal-carousel-slide')
-				.each(function (i) {
-					var $pageItem = $('<li/>', {
-						className: 'horizontal-carousel-pager-item'
-					});
-					$pageItem  = $pageItem.append($('<a/>', {
-						className: 'horizontal-carousel-pager-item-link ir main-sprite',
-						text: i
-					}));
-					$myController.append($pageItem);
-				})
-				.parent()
-				.parent()
-				.prepend($myController);
-
-		});
-*/
 
 		// size the main message
 		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * this.settings.scaleFactor + "px").css('fontSize', nick.settings.mainMessageHeight);
