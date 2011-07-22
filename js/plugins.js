@@ -1030,7 +1030,6 @@ window.log = function(){
 				$slide = $wrap.find(opt.slide),			
 				slidenum = $slide.length,
 				speed = opt.speed / 1000;
-		console.log($wrap);
 			$wrap.css({
 				overflow: "hidden",
 				width: "100%"
@@ -1038,14 +1037,11 @@ window.log = function(){
 			
 			$slider.css({
 				marginLeft: "0px",
-				float: "left",
 				width: 100 * slidenum + "%"
 			});
 				    
-			$slide
-				.css({
-					float: "left",
-					width: (100 / slidenum) + "%"				
+			$slide.css({
+					width: (100 / slidenum) + "%",
 				})
 				.each(function(i) {
 					var $el = $(this),

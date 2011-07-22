@@ -515,6 +515,10 @@ li{
 	height: 80%;
 	display: block;
 }
+.horizontal-carousel-slide,
+.horizontal-carousel-slider{
+	float: left;
+}
 .horizontal-carousel,
 .horizontal-carousel-slider,
 .horizontal-carousel-slide{
