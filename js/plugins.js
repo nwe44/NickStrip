@@ -643,7 +643,7 @@ window.log = function(){
 
 		}	
 	};
-	
+	/*! yup, we could be using scale here, and I'm experimenting with it */
 	sch.prototype.resizeElement = function ($element) {
 		var s = this.settings,
 			percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / s.winHeight )) : 100;
