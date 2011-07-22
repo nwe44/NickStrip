@@ -61,11 +61,11 @@ $(document).ready(function() {
 	nick.behaviours();
 	yepnope([{
 		test: Modernizr.touch,
-		yep: ['js/libs/iscroll-min.js','js/mylibs/touchHelpers.js'],
-		nope: ['js/mylibs/desktopHelpers.js'],
+		yep: ['js/libs/iscroll-min.js','js/helper/touchHelpers.js'],
+		nope: ['js/helper/desktopHelpers.js'],
 		callback: function (url, result, key) {
 			if(result){
-				if(url === "js/mylibs/touchHelpers.js"){
+				if(url === "js/helper/touchHelpers.js"){
 			   		nick.touchBehaviours();			
 				}
 			}else{

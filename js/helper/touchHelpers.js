@@ -144,7 +144,10 @@ MBP.autogrow = function (element, lh) {
 };
 
 })(document);
-
+/*!
+* Nick-evans.com touch behaviours
+* Author: Nick Evans 2011
+*/
 nick.touchBehaviours = function(){
 	MBP.hideUrlBar();
 	

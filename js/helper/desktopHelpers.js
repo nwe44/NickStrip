@@ -515,7 +515,11 @@ Support:
 })(jQuery, 'waypoint', 'waypoints', this);
 
 
-// header scroll
+/*!
+* nick-evans.com desktop Behaviours
+* Someday to be made more generic and opensourced
+* Author: Nick Evans 2011
+*/
 nick.desktopBehaviours = function(){
 	
 	// header
