@@ -361,6 +361,44 @@ FileETag None
 #  RewriteRule ^(.*)/$ /$1 [R=301,L]
 #</IfModule>
 
+# ----------------------------------------------------------------------
+# Tell people the old site has moved
+# ----------------------------------------------------------------------
+
+redirect 301 /wwwmansscom-iphone http://nick-evans.com/archive/wwwmansscom-iphone
+redirect 301 /wwwmansscom-ipad http://nick-evans.com/archive/wwwmansscom-ipad
+redirect 301 /wwwmansscom-desktops http://nick-evans.com/archive/wwwmansscom-desktops
+redirect 301 /vem-sistemi http://nick-evans.com/archive/vem-sistemi
+redirect 301 /trendpulse http://nick-evans.com/archive/trendpulse
+redirect 301 /benjamin-foundation-website http://nick-evans.com/archive/benjamin-foundation-website
+redirect 301 /portfolio/native-ui-brochure http://nick-evans.com/archive/portfolio/native-ui-brochure
+redirect 301 /art-commissioners-website http://nick-evans.com/archive/art-commissioners-website
+redirect 301 /portfolio/tania-identity http://nick-evans.com/archive/portfolio/tania-identity
+redirect 301 /sagitus-partners http://nick-evans.com/archive/sagitus-partners
+redirect 301 /portfolio/knitted-records http://nick-evans.com/archive/portfolio/knitted-records
+redirect 301 /portfolio/gerhard-richter-monograph http://nick-evans.com/archive/portfolio/gerhard-richter-monograph
+redirect 301 /portfolio/gerhard-richter-marketing http://nick-evans.com/archive/portfolio/gerhard-richter-marketing
+redirect 301 /conference-identity http://nick-evans.com/archive/conference-identity
+redirect 301 /portfolio/bowers-wilkins-panorama-brochure http://nick-evans.com/archive/portfolio/bowers-wilkins-panorama-brochure
+redirect 301 /portfolio/ben-evanscom http://nick-evans.com/archive/portfolio/ben-evanscom
+redirect 301 /maybank-and-matthews http://nick-evans.com/archive/maybank-and-matthews
+redirect 301 /ivory-books-website http://nick-evans.com/archive/ivory-books-website
+redirect 301 /portfolio/bowers-wilkins-xt-brochure http://nick-evans.com/archive/portfolio/bowers-wilkins-xt-brochure
+redirect 301 /portfolio/rca-show-2007-pitch http://nick-evans.com/archive/portfolio/rca-show-2007-pitch
+redirect 301 /portfolio/cin%C3%A9math%C3%A8que-royale-de-belgique http://nick-evans.com/archive/portfolio/cin%C3%A9math%C3%A8que-royale-de-belgique
+redirect 301 /portfolio/bowers-wilkins-custom-theatre-brochure http://nick-evans.com/archive/portfolio/bowers-wilkins-custom-theatre-brochure
+redirect 301 /portfolio/accidental-collectors-leaflet http://nick-evans.com/archive/portfolio/accidental-collectors-leaflet
+redirect 301 /portfolio/stadtsbiblotheque-after-gursky http://nick-evans.com/archive/portfolio/stadtsbiblotheque-after-gursky
+redirect 301 /portfolio/rosas http://nick-evans.com/archive/portfolio/rosas
+redirect 301 /portfolio/label-me http://nick-evans.com/archive/portfolio/label-me
+redirect 301 /portfolio/jenkins-reports-website http://nick-evans.com/archive/portfolio/jenkins-reports-website
+redirect 301 /portfolio/jane-langley http://nick-evans.com/archive/portfolio/jane-langley
+redirect 301 /portfolio/bluebook http://nick-evans.com/archive/portfolio/bluebook
+redirect 301 /portfolio/shop-must-go http://nick-evans.com/archive/portfolio/shop-must-go
+redirect 301 /portfolio/rca-design-products-yearbook http://nick-evans.com/archive/portfolio/rca-design-products-yearbook
+redirect 301 /cv http://nick-evans.com/archive/cv
+
+
 
 
 # ----------------------------------------------------------------------
