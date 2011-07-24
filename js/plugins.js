@@ -1046,7 +1046,7 @@ window.log = function(){
 			});
 				    
 			$slide.css({
-					width: (100 / slidenum) + "%",
+					width: (100 / slidenum) + "%"
 				})
 				.each(function(i) {
 					var $el = $(this),
