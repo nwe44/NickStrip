@@ -657,13 +657,16 @@ window.log = function(){
 			percentage = $(window).scrollTop() > 1 ? 100 - (100 * ($(window).scrollTop() / s.winHeight )) : 100;
 
 		$element // doing dom changes to an off line seems to actually be counter productive here.
-			.css('height', percentage + "%")
-			.css('font-size', $element.height() / s.scaleFactor + "px")
-			.css('line-height', $element.height() + "px")
+			.css({
+				'height': percentage + "%",
+				'font-size': $element.height() / s.scaleFactor + "px",
+				'line-height': $element.height() + "px"
+				})
 			.find('h1') // this seems to be required in OS, I don't like it either.
-			.css('height', "100%")
-			.css('font-size', "100%")
-			.css('line-height', "100%");
+			.css({
+				'height': "100%",
+				'font-size': "100%",
+				'line-height': "100%"});
 			
 		if (typeof(this.callbacks.resizeHeader) == "function") {
 			this.callbacks.resizeHeader();
@@ -676,13 +679,15 @@ window.log = function(){
 			$newElement = $element.clone( true );
 		// doing dom changes to an off line element saves reflows
 		$newElement
-			.css('height', s.smallestHeight + "px")
-			.css('font-size', s.fontSize + "px")
-			.css('line-height', s.smallestHeight + "px")
+			.css({
+				'height': s.smallestHeight + "px",
+				'font-size': s.fontSize + "px",
+				'line-height': s.smallestHeight + "px"})
 			.find('h1') // this seems to be required in OS, I don't like it either.
-			.css('height', s.smallestHeight + "px")
-			.css('font-size', s.fontSize + "px")
-			.css('line-height', s.smallestHeight + "px")
+			.css({
+				'height': s.smallestHeight + "px",
+				'font-size': s.fontSize + "px",
+				'line-height': s.smallestHeight + "px"})
 			.addClass('locked-off');
 			
 		if (s.$header === $element) { // TODO: is there a need for a distinction between the header, and tracking elements?
@@ -731,8 +736,9 @@ window.log = function(){
 
 			// doing dom changes to an off line element saves reflows
 			$newHeaderTitle
-				.css('font-size', parseInt($newHeaderHeight / s.scaleFactor, 10) + "px")
-				.css('line-height', $newHeaderHeight + "px");
+				.css({
+					'font-size': parseInt($newHeaderHeight / s.scaleFactor, 10) + "px",
+					'line-height': $newHeaderHeight + "px"});
 			s.$header.css('height', percentage + "%");
 			s.$header.find('h1').replaceWith($newHeaderTitle);
 	};
