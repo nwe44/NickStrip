@@ -517,7 +517,6 @@ Support:
 
 /*!
 * nick-evans.com desktop Behaviours
-* Someday to be made more generic and opensourced
 * Author: Nick Evans 2011
 */
 nick.desktopBehaviours = function(){
