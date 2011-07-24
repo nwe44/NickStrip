@@ -12,7 +12,22 @@ nick = {
 	behaviours : function(){   	
 		nick.settings.mainMessageHeight = parseFloat($(window).height() / this.settings.scaleFactor);
 		$('body').removeClass('loading');
+		// size the main message
+		$('#mainMessage span')
+			.css({
+				'lineHeight': nick.settings.mainMessageHeight * this.settings.scaleFactor + "px",
+				'fontSize': nick.settings.mainMessageHeight
+				});
+		$(window).resize(function () {
+			nick.settings.mainMessageHeight = $(window).height() / nick.settings.scaleFactor;
+			$('#mainMessage span')
+				.css({
+					'lineHeight': nick.settings.mainMessageHeight * nick.settings.scaleFactor + "px",
+					'fontSize': nick.settings.mainMessageHeight
+					});
+		});	
 		
+		// build the tertiary pages.	
 		$( "#sectionTmpl" ).tmpl( nick.stripContent ).insertAfter( "#section-0" );	
 
 		// slideshows
@@ -25,18 +40,14 @@ nick = {
 			speed: 300 // ms.
 		});
 
-		// size the main message
-		$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * this.settings.scaleFactor + "px").css('fontSize', nick.settings.mainMessageHeight);
-		$(window).resize(function () {
-			nick.settings.mainMessageHeight = $(window).height() / nick.settings.scaleFactor;
-			$('#mainMessage span').css('lineHeight', nick.settings.mainMessageHeight * nick.settings.scaleFactor + "px").css('fontSize', nick.settings.mainMessageHeight);
-		});
+
 	}
 };
 
-$(document).ready(function() { 
+$(document).ready(function() {
 
 	nick.behaviours();
+	
 	yepnope([{
 		test: Modernizr.touch,
 		yep: ['js/libs/iscroll-min.js','js/helper/touchHelpers.js'],
