@@ -559,8 +559,8 @@ window.log = function(){
 * Author: Nick Evans 2011
 */
 (function (window) {
-	var ua = navigator.userAgent.toLowerCase();
-  isWebkit = !!ua.match(/applewebkit/i);
+	var ua = navigator.userAgent.toLowerCase(),
+  	isWebkit = !!ua.match(/applewebkit/i);
   var supportsTouch = false;
   try {
     document.createEvent("TouchEvent");
