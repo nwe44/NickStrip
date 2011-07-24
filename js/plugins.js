@@ -946,7 +946,7 @@ window.log = function(){
 							.attr('tabindex', -1);
 			},
 			navState : function($slider, moveTo) {
-				var $target = $( '[href="#' + $slider.attr('id') + '"]');
+				var $target = $( '[href="#' + $slider.attr('id') + '"]'),
 					$slides = $slider.find(opt.slide),
 					current = -(moveTo / 100),
 					$pagination = $slider.parent().find('.carousel-tabs');
