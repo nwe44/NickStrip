@@ -931,11 +931,8 @@ window.log = function(){
 			activeSlide : function($slider, current) {
 
 				var $slides = $slider.find(opt.slide),
-					$activeSlide = $($slides[current]),
-					activeId = $slides[current].id;
+					$activeSlide = $($slides[current]);
 					
-				$slider.attr('aria-activedescendant', activeId);
-
 				$activeSlide
 					.addClass("active")
 					.attr('aria-hidden', false)
