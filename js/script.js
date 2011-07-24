@@ -50,7 +50,7 @@ $(document).ready(function() {
 	
 	yepnope([{
 		test: Modernizr.touch,
-		yep: ['js/libs/iscroll-min.js','js/helper/touchHelpers.js'],
+		yep: ['js/helper/touchHelpers.js'],
 		nope: ['js/helper/desktopHelpers.js'],
 		callback: function (url, result, key) {
 			if(result){
